@@ -19,7 +19,7 @@ GameInterface::GameInterface(sf::Texture &texture)
 	timeText.setFont(font);
 	timeText.setColor(sf::Color::Red);
 	timeText.setString("00 : 00");
-    timeText.setPosition(923.5, 53);
+	timeText.setPosition(923.5, 53);
 
 	playerHealth.setFont(font);
 	playerHealth.setPosition(72, 12);
@@ -44,7 +44,6 @@ GameInterface::GameInterface(sf::Texture &texture)
 	playerBSLevel.setFont(font);
 	playerBSLevel.setPosition(72, 1029);
 	playerBSLevel.setColor(sf::Color(186, 255, 255));
-
 }
 
 
