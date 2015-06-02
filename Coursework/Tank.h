@@ -7,10 +7,10 @@ class Tank
 public:
 	Tank(sf::Texture &texture);
 	~Tank();
-	sf::Vector2f getGunPosition();
+	sf::Vector2f getTankPosition();
 	sf::Vector2f getFirstBulletPosition();
 
-	virtual void update(float deltaTime);
+	virtual void update(float deltaTime, sf::Vector2f botPos);
 	void draw(sf::RenderWindow &window);
 	float getGunRotation();
 public:
@@ -24,7 +24,7 @@ public:
 		bool upgradeAvailability = false;
 	} stats;
 
-	bool life = false;
+	bool life = true;
 protected:
 	std::vector<Bullet*> bullets;
 	std::vector<Bullet*>::iterator it;

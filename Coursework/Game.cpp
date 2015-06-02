@@ -87,8 +87,8 @@ void Game::update(float deltaTime)
 	if (gameState == GAME) {
 		gameInterface->update(player->stats, deltaTime);
 		map->update(deltaTime);
-		player->update(deltaTime);
-		bot->update(deltaTime, player->getGunPosition(), player->getFirstBulletPosition(), player->life);
+		player->update(deltaTime, bot->getTankPosition());
+		bot->update(deltaTime, player->getTankPosition(), player->getFirstBulletPosition(), player->life);
 		dynamicCursor->update();
 	}
 

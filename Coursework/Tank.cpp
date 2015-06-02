@@ -41,7 +41,7 @@ void Tank::draw(sf::RenderWindow &window)
 }
 
 
-void Tank::update(float deltaTime)
+void Tank::update(float deltaTime, sf::Vector2f botPos)
 {
 	sf::Vector2f tankPos = tankBody.getPosition();
 	sf::Vector2i mousePos = mouse.getPosition();
@@ -54,7 +54,7 @@ void Tank::update(float deltaTime)
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 		if (bulletDelayTime >= 1000 - 100 * stats.asLevel) {
 			if (BATTLE_ZONE) {
-				bullets.push_back(new Bullet(bulletTexture, tankGun.getPosition(), tankGun.getRotation(), stats.bsLevel));
+				bullets.push_back(new Bullet(bulletTexture, tankGun.getPosition(), tankGun.getRotation(), stats.bsLevel, botPos));
 				if (shotSoundDelayTime > 100) {
 					shot.play();
 					shotSoundDelayTime = 0;
@@ -92,7 +92,6 @@ void Tank::update(float deltaTime)
 	if (abs(tankBodyAngle - angle) < 30 || abs(tankBodyAngle - angle) > 330) {
 		tankGun.setRotation(angle);
 	}
-	std::cout << angle << std::endl;
 
 	// upgrade
 	secondCounterOne += deltaTime;
@@ -191,9 +190,9 @@ void Tank::update(float deltaTime)
 }
 
 
-sf::Vector2f Tank::getGunPosition()
+sf::Vector2f Tank::getTankPosition()
 {
-	sf::Vector2f pos = tankGun.getPosition();
+	sf::Vector2f pos = tankBody.getPosition();
 	return pos;
 }
 
