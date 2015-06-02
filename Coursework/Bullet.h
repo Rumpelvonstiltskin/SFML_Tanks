@@ -5,7 +5,7 @@ class Bullet
 public:
 	bool life = true;
 public:
-	Bullet(sf::Texture &texture, sf::Vector2f gun_pos, float angle, float level, sf::Vector2f tankEnemyPos);
+	Bullet(sf::Texture &texture, sf::Vector2f gunPos, float angle, float level, sf::Vector2f tankEnemyPos);
 	~Bullet();
 
 	void update(float deltaTime);
@@ -14,13 +14,15 @@ public:
 	sf::Vector2f getPosition();
 private:
 	sf::Texture bulletTexture;
-	sf::Sprite explosion;
+	sf::Sprite muzzleFlash;
 	sf::Sprite bullet;
 	sf::Vector2f tankEnemyPos;
+	sf::Vector2f gunPos;
 
-	float delayTime = 0.3;
+	float delayTime = 50;
 	float dx = 35;
 	float dy = 35;
-	bool explode = false;
+	float angle = 0;
+	bool hit = false;
 };
 
