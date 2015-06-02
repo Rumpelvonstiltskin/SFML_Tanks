@@ -10,7 +10,7 @@ public:
 	sf::Vector2f getTankPosition();
 	sf::Vector2f getFirstBulletPosition();
 
-	virtual void update(float deltaTime, sf::Vector2f botPos);
+	virtual void update(float deltaTime, sf::Vector2f botPos, bool enemyHit);
 	void draw(sf::RenderWindow &window);
 	float getGunRotation();
 public:
@@ -26,6 +26,7 @@ public:
 
 	bool life = true;
 	int drawPriority = 1;
+	bool enemyHit;
 protected:
 	std::vector<Bullet*> bullets;
 	std::vector<Bullet*>::iterator it;

@@ -11,8 +11,11 @@ TankBot::TankBot(sf::Texture &texture) : Tank(texture)
 }
 
 
-void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f firstBulletPosition, bool playerLife)
+void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f firstBulletPosition, bool playerLife, bool enemyHit)
 {
+	this->enemyHit = false;
+	if (enemyHit) stats.healing_points -= 5;
+
 	this->deltaTime = deltaTime;
 	sf::Vector2f tankPos = tankBody.getPosition();
 	float tankBodyAngle = tankBody.getRotation();
@@ -34,10 +37,12 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 
 	for (it = bullets.begin(); it != bullets.end();) {
 		Bullet *b = *it;
-		if (b->hit == true) {
+		if (b->hit) {
 			explode(b->getPosition());
 			hitDelayTime = 100;
+			this->enemyHit = true;
 		}
+
 		if (b->life == false) {
 			it = bullets.erase(it);
 			delete b;

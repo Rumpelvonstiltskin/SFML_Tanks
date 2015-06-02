@@ -54,8 +54,11 @@ void Tank::draw(sf::RenderWindow &window)
 }
 
 
-void Tank::update(float deltaTime, sf::Vector2f botPos)
+void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit)
 {
+	this->enemyHit = false;
+	if (enemyHit) stats.healing_points -= 5;
+
 	this->deltaTime = deltaTime;
 	sf::Vector2f tankPos = tankBody.getPosition();
 	sf::Vector2i mousePos = mouse.getPosition();
@@ -80,10 +83,14 @@ void Tank::update(float deltaTime, sf::Vector2f botPos)
 
 	for (it = bullets.begin(); it != bullets.end();) {
 		Bullet *b = *it;
-		if (b->hit == true) {
+		if (b->hit) {
 			explode(b->getPosition());
 			hitDelayTime = 100;
+			this->enemyHit = true;
 		}
+
+		this->enemyHit = false;
+
 		if (b->life == false) {
 			it = bullets.erase(it);
 			delete b;

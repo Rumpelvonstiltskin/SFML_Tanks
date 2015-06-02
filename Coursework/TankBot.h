@@ -7,7 +7,7 @@ class TankBot : public Tank
 public:
 	TankBot(sf::Texture &texture);
 	~TankBot();
-	void update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f firstBulletPosition, bool playerLife);
+	void update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f firstBulletPosition, bool playerLife, bool enemyHit);
 	struct switchers {
 		bool moveForward = false;
 		bool moveBackward = false;
