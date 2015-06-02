@@ -25,7 +25,7 @@ Tank::Tank(sf::Texture &texture)
 	tankGun.setPosition(500, 500);
 
 	bulletTexture = texture;
-	buffer.loadFromFile("\Resources\\shot.ogg");
+	buffer.loadFromFile("Resources\\shot.ogg");
 	shot.setBuffer(buffer);
 }
 

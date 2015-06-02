@@ -56,18 +56,6 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 	}
 
 	// upgrade x = 1840, y = 540
-	if (!playerLife && stats.gold >= 100) {
-		float angle = atan2(540 - tankPos.y, 1840 - tankPos.x) * 180 / 3.14 + 270;
-		if (tankBodyAngle > angle + 5 && tankBodyAngle < angle - 5) {
-			decision = BACKWARD_MOVEMENT;
-			switcher.moveForward = true;
-		}
-		else {
-			decision = ROTATION_LEFT;
-			switcher.rotationLeft = true;
-		}
-	}
-	else {
 		if (decisionTime <= 0) {
 			decisionTime = (1.0 + static_cast <float> (rand() % 5000)) / 10.0;
 			time = 0;
@@ -76,32 +64,31 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 
 		decisionTime -= deltaTime;
 
-		if (decisionTime > 0) {
-			switch (decision) {
-			case FORWARD_MOVEMENT:
-				switcher.moveForward = true;
-				break;
-			case BACKWARD_MOVEMENT:
-				switcher.moveBackward = true;
-				break;
-			case ROTATION_LEFT:
-				switcher.rotationLeft = true;
-				break;
-			case ROTATION_RIGHT:
-				switcher.rotateRight = true;
-				break;
-			case SHOT:
-				break;
-			default:
-				break;
-			}
+	if (decisionTime > 0) {
+		switch (decision) {
+		case FORWARD_MOVEMENT:
+			switcher.moveForward = true;
+			break;
+		case BACKWARD_MOVEMENT:
+			switcher.moveBackward = true;
+			break;
+		case ROTATION_LEFT:
+			switcher.rotationLeft = true;
+			break;
+		case ROTATION_RIGHT:
+			switcher.rotateRight = true;
+			break;
+		case SHOT:
+			break;
+		default:
+			break;
 		}
-		else {
-			switcher.moveForward = false;
-			switcher.moveBackward = false;
-			switcher.rotationLeft = false;
-			switcher.rotateRight = false;
-		}
+	}
+	else {
+		switcher.moveForward = false;
+		switcher.moveBackward = false;
+		switcher.rotationLeft = false;
+		switcher.rotateRight = false;
 	}
 
 	// collision
