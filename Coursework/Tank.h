@@ -25,7 +25,6 @@ public:
 	} stats;
 
 	bool life = true;
-	bool hit = false;
 	int drawPriority = 1;
 protected:
 	std::vector<Bullet*> bullets;

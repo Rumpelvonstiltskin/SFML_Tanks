@@ -38,9 +38,6 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 			explode(b->getPosition());
 			hitDelayTime = 100;
 		}
-		else {
-			hit = false;
-		}
 		if (b->life == false) {
 			it = bullets.erase(it);
 			delete b;
