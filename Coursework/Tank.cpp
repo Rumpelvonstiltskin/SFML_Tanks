@@ -54,7 +54,7 @@ void Tank::update(float deltaTime, sf::Vector2f botPos)
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 		if (bulletDelayTime >= 1000 - 100 * stats.asLevel) {
 			if (BATTLE_ZONE) {
-				bullets.push_back(new Bullet(bulletTexture, tankGun.getPosition(), tankGun.getRotation(), stats.bsLevel, botPos));
+				bullets.push_back(new Bullet(bulletTexture, tankGun.getPosition(), tankGun.getRotation(), stats.bsLevel));
 				if (shotSoundDelayTime > 100) {
 					shot.play();
 					shotSoundDelayTime = 0;
@@ -74,7 +74,7 @@ void Tank::update(float deltaTime, sf::Vector2f botPos)
 	}
 
 	for (it = bullets.begin(); it != bullets.end(); it++) {
-		(*it)->update(deltaTime);
+		(*it)->update(deltaTime, botPos);
 	}
 
 	// gun rotation

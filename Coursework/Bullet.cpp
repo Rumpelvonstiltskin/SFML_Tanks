@@ -3,7 +3,7 @@
 #define OUTSIDE_AREA bulletPos.x > 1920 || bulletPos.x < 0 || bulletPos.y < 0 || bulletPos.y > 1080
 
 
-Bullet::Bullet(sf::Texture &texture, sf::Vector2f gunPos, float angle, float level, sf::Vector2f tankEnemyPos)
+Bullet::Bullet(sf::Texture &texture, sf::Vector2f gunPos, float angle, float level)
 {
 	bullet.setTexture(texture);
 	bulletTexture.setSmooth(true);
@@ -16,12 +16,11 @@ Bullet::Bullet(sf::Texture &texture, sf::Vector2f gunPos, float angle, float lev
 	muzzleFlash.setScale(0.5, 0.5);
 
 	angle = angle * 3.14 / 180;
-	bullet.setPosition(gunPos.x + 115 * sin(angle), gunPos.y - 115 * cos(angle));
+	bullet.setPosition(gunPos.x + 120 * sin(angle), gunPos.y - 120 * cos(angle));
 
 	dx = (1 + (level / 2)) * sin(angle);
 	dy = -(1 + (level / 2)) * cos(angle);
 
-	this->tankEnemyPos = tankEnemyPos;
 	this->gunPos = gunPos;
 	this->angle = angle;
 }
@@ -31,18 +30,18 @@ Bullet::~Bullet()
 {
 }
 
-void Bullet::update(float deltaTime)
+void Bullet::update(float deltaTime, sf::Vector2f tankEnemyPos)
 {
 	sf::Vector2f bulletPos = bullet.getPosition();
 
-	if (bulletPos.x - 55 < tankEnemyPos.x && bulletPos.x + 55 > tankEnemyPos.x && bulletPos.y + 55 > tankEnemyPos.y && bulletPos.y - 55 < tankEnemyPos.y) {
+	if (bulletPos.x < tankEnemyPos.x + 70 && bulletPos.x > tankEnemyPos.x - 70 && bulletPos.y > tankEnemyPos.y - 65 && bulletPos.y < tankEnemyPos.y + 65) {
 		hit = true;
+		life = false;
 	}
 
-	muzzleFlash.setPosition(gunPos.x + 115 * sin(angle), gunPos.y - 115 * cos(angle));
+	muzzleFlash.setPosition(gunPos.x + 120 * sin(angle), gunPos.y - 120 * cos(angle));
 	bullet.move(dx * deltaTime, dy * deltaTime);
 	delayTime -= deltaTime;
-
 
 	if (OUTSIDE_AREA) life = false;
 }
@@ -54,8 +53,8 @@ sf::Vector2f Bullet::getPosition()
 
 void Bullet::draw(sf::RenderWindow &window)
 {
-		window.draw(bullet);
-		if (delayTime > 0) {
-			window.draw(muzzleFlash);
-		}
+	window.draw(bullet);
+	if (delayTime > 0) {
+		window.draw(muzzleFlash);
+	}
 }

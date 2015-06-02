@@ -20,7 +20,7 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 
 	if (switcher.shoot) {
 		if (bulletDelayTime >= 1000 - 100 * stats.asLevel) {
-			bullets.push_back(new Bullet(bulletTexture, tankPos, tankGun.getRotation(), stats.bsLevel, playerPos));
+			bullets.push_back(new Bullet(bulletTexture, tankPos, tankGun.getRotation(), stats.bsLevel));
 			bulletDelayTime = 0;
 
 			if (shotSoundDelayTime > 100) {
@@ -40,7 +40,7 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 	}
 
 	for (it = bullets.begin(); it != bullets.end(); it++) {
-		(*it)->update(deltaTime);
+		(*it)->update(deltaTime, playerPos);
 	}
 
 	//bot decisions
