@@ -66,7 +66,7 @@ Menu::~Menu()
 }
 
 
-void Menu::update(float deltaTime, int gameState)
+void Menu::update(float deltaTime, si gameState)
 {
 	delayTime += deltaTime;
 	this->gameState = gameState;
@@ -207,7 +207,7 @@ void Menu::draw(sf::RenderWindow &window)
 }
 
 
-int Menu::GetPressedItem()
+si Menu::GetPressedItem()
 {
 	return selectedItemIndexMenu;
 }

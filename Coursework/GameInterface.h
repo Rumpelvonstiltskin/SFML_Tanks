@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Tank.h"
+#include "td.h"
+
 
 class GameInterface
 {
@@ -16,8 +18,8 @@ private:
 	sf::Font font;
 	sf::Text timeText, playerHealth, playerArmor, playerGold, playerMSLevel, playerASLevel, playerBSLevel;
 
-	int seconds = 0;
-	int minutes = 0;
+	si seconds = 0;
+	si minutes = 0;
 	float time = 0;
 };
 

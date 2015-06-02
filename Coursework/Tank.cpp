@@ -6,7 +6,7 @@
 
 Tank::Tank(sf::Texture &texture)
 {
-	short int r, g, b;
+	si r, g, b;
 
 	r = 20 + static_cast<int> (rand() % 100);
 	g = 20 + static_cast<int> (rand() % 100);
@@ -57,12 +57,21 @@ void Tank::draw(sf::RenderWindow &window)
 void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit)
 {
 	this->enemyHit = false;
-	if (enemyHit) stats.healing_points -= 5;
+	if (enemyHit) {
+		if (stats.armor) {
+			stats.armor -= 5;
+		}
+		else {
+			stats.healing_points -= 5;
+		}
+	}
 
 	this->deltaTime = deltaTime;
 	sf::Vector2f tankPos = tankBody.getPosition();
 	sf::Vector2i mousePos = mouse.getPosition();
 	float tankBodyAngle = tankBody.getRotation();
+
+	if (!stats.healing_points) life = false;
 
 	// shot
 	bulletDelayTime += deltaTime;

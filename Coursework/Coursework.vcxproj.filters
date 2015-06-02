@@ -71,6 +71,9 @@
     <ClInclude Include="TankBot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="td.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Coursework.rc">

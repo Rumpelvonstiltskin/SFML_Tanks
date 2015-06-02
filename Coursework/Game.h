@@ -15,6 +15,7 @@
 #include "MouseCursor.h"
 #include "TankBot.h"
 
+
 class Game {
 public:
 	Game();
@@ -36,7 +37,7 @@ private:
 		GAME, OPTIONS, ABOUT, EXIT, MENU, PAUSE
 	};
 
-	int gameState = MENU;
+	si gameState = MENU;
 private:
 	void update(float deltaTime);
 	void render();

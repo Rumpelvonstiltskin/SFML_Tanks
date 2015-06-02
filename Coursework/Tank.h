@@ -1,7 +1,10 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Bullet.h"
-#pragma once
+#include "td.h"
+
+
 class Tank
 {
 public:
@@ -15,17 +18,17 @@ public:
 	float getGunRotation();
 public:
 	struct stats {
-		int healing_points = 100;
-		int armor = 0;
-		int gold = 7000;
-		int msLevel = 1;
-		int asLevel = 1;
-		int bsLevel = 1;
+		si healing_points = 100;
+		si armor = 0;
+		si gold = 7000;
+		si msLevel = 1;
+		si asLevel = 1;
+		si bsLevel = 1;
 		bool upgradeAvailability = false;
 	} stats;
 
 	bool life = true;
-	int drawPriority = 1;
+	si drawPriority = 1;
 	bool enemyHit;
 protected:
 	std::vector<Bullet*> bullets;

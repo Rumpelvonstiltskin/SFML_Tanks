@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "td.h"
+
 
 class Menu
 {
@@ -8,9 +10,9 @@ public:
 	Menu();
 	~Menu();
 
-	void update(float deltaTime, int gameState);
+	void update(float deltaTime, si gameState);
 	void draw(sf::RenderWindow &window);
-	int GetPressedItem();
+	si GetPressedItem();
 private:
 	sf::Font about;
 	sf::Font menuItems;
@@ -20,11 +22,11 @@ private:
 	sf::SoundBuffer menuThemeBuffer;
 	sf::Sound menuTheme;
 
-	int selectedItemIndexMenu = 0;
-	int selectedItemIndexOptions = 4;
-	int musicVolumeState = 6;
-	int sfxVolumeState = 6;
-	int gameState = 1;	// MENU
+	si selectedItemIndexMenu = 0;
+	si selectedItemIndexOptions = 4;
+	si musicVolumeState = 6;
+	si sfxVolumeState = 6;
+	si gameState = 1;	// MENU
 
 	float delayTime = 0;
 };

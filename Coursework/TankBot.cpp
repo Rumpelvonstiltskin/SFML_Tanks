@@ -14,7 +14,14 @@ TankBot::TankBot(sf::Texture &texture) : Tank(texture)
 void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f firstBulletPosition, bool playerLife, bool enemyHit)
 {
 	this->enemyHit = false;
-	if (enemyHit) stats.healing_points -= 5;
+	if (enemyHit) {
+		if (stats.armor) {
+			stats.armor -= 5;
+		}
+		else {
+			stats.healing_points -= 5;
+		}
+	}
 
 	this->deltaTime = deltaTime;
 	sf::Vector2f tankPos = tankBody.getPosition();

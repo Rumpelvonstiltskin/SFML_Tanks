@@ -2,6 +2,7 @@
 #include "Tank.h"
 #include <SFML/Graphics.hpp>
 
+
 class TankBot : public Tank
 {
 public:
@@ -22,6 +23,6 @@ private:
 
 	float time = 0;
 	float decisionTime = 0;
-	int decision;
+	si decision;
 };
 
