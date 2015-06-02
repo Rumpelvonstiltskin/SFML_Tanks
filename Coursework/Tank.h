@@ -25,6 +25,8 @@ public:
 	} stats;
 
 	bool life = true;
+	bool hit = false;
+	int drawPriority = 1;
 protected:
 	std::vector<Bullet*> bullets;
 	std::vector<Bullet*>::iterator it;
@@ -35,15 +37,20 @@ protected:
 	sf::Sound shot;
 	sf::Mouse mouse;
 	sf::Texture bulletTexture;
+	sf::Sprite explosion;
 
 	float rotationSpeed = 0.2;
 	float movementSpeed = 0.1;
 
 	float bulletDelayTime = 0;
 	float shotSoundDelayTime = 0;
+	float deltaTime;
+	float hitDelayTime = 100;
 
 	float secondCounterOne = 0;
 	float secondCounterTwo = 0;
 
 	bool rotate = false;
+protected:
+	void explode(sf::Vector2f hitPos);
 };

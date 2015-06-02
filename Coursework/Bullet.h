@@ -4,6 +4,7 @@ class Bullet
 {
 public:
 	bool life = true;
+	bool hit = false;
 public:
 	Bullet(sf::Texture &texture, sf::Vector2f gunPos, float angle, float level);
 	~Bullet();
@@ -22,6 +23,5 @@ private:
 	float dx = 35;
 	float dy = 35;
 	float angle = 0;
-	bool hit = false;
 };
 

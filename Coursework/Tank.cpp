@@ -24,6 +24,10 @@ Tank::Tank(sf::Texture &texture)
 	tankGun.setOrigin(72.5, 134.5);
 	tankGun.setPosition(500, 500);
 
+	explosion.setTexture(texture);
+	explosion.setTextureRect(sf::IntRect(469, 1925, 200, 200));
+	explosion.setOrigin(100, 100);
+
 	bulletTexture = texture;
 	buffer.loadFromFile("Resources\\shot.ogg");
 	shot.setBuffer(buffer);
@@ -32,6 +36,17 @@ Tank::Tank(sf::Texture &texture)
 
 void Tank::draw(sf::RenderWindow &window)
 {
+	if (hit = true) {
+		hitDelayTime -= deltaTime;
+		if (hitDelayTime > 0) {
+			window.draw(explosion);
+			drawPriority = 0;
+		}
+		else {
+			drawPriority = 1;
+		}
+	}
+
 	window.draw(tankBody);
 	window.draw(tankGun);
 
@@ -43,6 +58,7 @@ void Tank::draw(sf::RenderWindow &window)
 
 void Tank::update(float deltaTime, sf::Vector2f botPos)
 {
+	this->deltaTime = deltaTime;
 	sf::Vector2f tankPos = tankBody.getPosition();
 	sf::Vector2i mousePos = mouse.getPosition();
 	float tankBodyAngle = tankBody.getRotation();
@@ -64,8 +80,17 @@ void Tank::update(float deltaTime, sf::Vector2f botPos)
 		}
 	}
 
+	
+
 	for (it = bullets.begin(); it != bullets.end();) {
 		Bullet *b = *it;
+		if (b->hit == true) {
+			explode(b->getPosition());
+			hitDelayTime = 100;
+		}
+		else {
+			hit = false;
+		}
 		if (b->life == false) {
 			it = bullets.erase(it);
 			delete b;
@@ -187,6 +212,12 @@ void Tank::update(float deltaTime, sf::Vector2f botPos)
 		tankGun.setPosition(tankPos.x, 767.5);
 	}
 
+}
+
+
+void Tank::explode(sf::Vector2f hitPos)
+{
+	explosion.setPosition(hitPos);
 }
 
 

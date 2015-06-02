@@ -107,8 +107,13 @@ void Game::render()
 			break;
 		case GAME:
 			map->draw(window);
-			player->draw(window);
-			bot->draw(window);
+			if (bot->drawPriority) {
+				bot->draw(window);
+				player->draw(window);
+			} else {
+				player->draw(window);
+				bot->draw(window);
+			}
 			gameInterface->draw(window);
 			dynamicCursor->draw(window);
 			break;
