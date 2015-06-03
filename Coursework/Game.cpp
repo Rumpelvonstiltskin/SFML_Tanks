@@ -21,7 +21,7 @@ Game::Game() : window(sf::VideoMode::getDesktopMode(), "Game", sf::Style::Fullsc
 	window.setMouseCursorVisible(false);
 	window.setFramerateLimit(144);
 
-	if (!gameTexture.loadFromFile("Resources\\Game_Texture.png")) exit(1);
+	if (!gameTexture.loadFromFile("Resources//Game_Texture.png")) exit(1);
 	gameTexture.setSmooth(true);
 
 	gameInterface = new GameInterface(gameTexture);

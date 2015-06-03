@@ -29,7 +29,7 @@ Tank::Tank(sf::Texture &texture)
 	explosion.setOrigin(100, 100);
 
 	bulletTexture = texture;
-	buffer.loadFromFile("Resources\\shot.ogg");
+	buffer.loadFromFile("Resources//shot.ogg");
 	shot.setBuffer(buffer);
 }
 

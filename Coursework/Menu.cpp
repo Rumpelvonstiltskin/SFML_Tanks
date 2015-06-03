@@ -3,11 +3,11 @@
 
 Menu::Menu()
 {
-	if (!menuItems.loadFromFile("Resources\\Squares.otf")) {
+	if (!menuItems.loadFromFile("Resources//Squares.otf")) {
 		exit(1);
 	}
 
-	if (!about.loadFromFile("Resources\\ArmyStamp.ttf")) {
+	if (!about.loadFromFile("Resources//ArmyStamp.ttf")) {
 		exit(1);
 	}
 	
@@ -55,7 +55,7 @@ Menu::Menu()
 		bar[i][j].setPosition(1000 + i * 50, 440 + j * 120);
 	}
 
-	if (!menuThemeBuffer.loadFromFile("Resources\\menu_theme.ogg")) exit(1);
+	if (!menuThemeBuffer.loadFromFile("Resources//menu_theme.ogg")) exit(1);
 	menuTheme.setBuffer(menuThemeBuffer);
 	menuTheme.setLoop(true);
 }

@@ -14,7 +14,7 @@ GameInterface::GameInterface(sf::Texture &texture)
 		plus[i].setPosition(450 + i * 300, 1055);
 	}
 
-	if (!font.loadFromFile("Resources\\bebas.ttf")) exit(1); 
+	if (!font.loadFromFile("Resources//bebas.ttf")) exit(1); 
 
 	timeText.setFont(font);
 	timeText.setColor(sf::Color::Red);
