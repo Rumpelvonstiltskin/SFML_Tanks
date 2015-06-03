@@ -65,6 +65,7 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 	for (it = bullets.begin(); it != bullets.end();) {
 		Bullet *b = *it;
 		if (b->hit) {
+			stats.gold += 20;
 			explode(b->getPosition());
 			hitDelayTime = 100;
 			this->enemyHit = true;

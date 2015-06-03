@@ -112,6 +112,7 @@ void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVol
 	for (it = bullets.begin(); it != bullets.end();) {
 		Bullet *b = *it;
 		if (b->hit) {
+			stats.gold += 20;
 			explode(b->getPosition());
 			hitDelayTime = 100;
 			this->enemyHit = true;
@@ -200,7 +201,6 @@ void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVol
 			}
 		}
 	}
-	//std::cout << mouse.getPosition().x << "    " << mouse.getPosition().y << std::endl; // DELETE THIS
 
 	// move
 	movementSpeed = 0.3 + 0.1 * stats.msLevel;
