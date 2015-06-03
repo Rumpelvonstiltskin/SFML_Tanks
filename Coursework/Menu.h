@@ -1,11 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include "td.h"
+#include "gamedef.h"
 
 
 class Menu
 {
+public:
+	sf::Sound musicTheme;
 public:
 	Menu();
 	~Menu();
@@ -20,13 +22,12 @@ private:
 	sf::Text aboutItem[3];
 	sf::RectangleShape bar[10][2];
 	sf::SoundBuffer menuThemeBuffer;
-	sf::Sound menuTheme;
 
 	si selectedItemIndexMenu = 0;
 	si selectedItemIndexOptions = 4;
 	si musicVolumeState = 6;
 	si sfxVolumeState = 6;
-	si gameState = 1;	// MENU
+	si gameState = MENU;	// MENU
 
 	float delayTime = 0;
 };

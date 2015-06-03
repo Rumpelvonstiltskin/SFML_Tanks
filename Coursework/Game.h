@@ -9,12 +9,11 @@
 #include "Menu.h"
 #include "Tank.h"
 #include "Bullet.h"
-#include <iostream>
 #include "Map.h"
 #include "GameInterface.h"
 #include "MouseCursor.h"
 #include "TankBot.h"
-
+#include "gamedef.h"
 
 class Game {
 public:
@@ -32,10 +31,8 @@ private:
 	MouseCursor* dynamicCursor;
 	TankBot* bot;
 	GameInterface* gameInterface;
-
-	enum gamestates {
-		GAME, OPTIONS, ABOUT, EXIT, MENU, PAUSE
-	};
+	sf::SoundBuffer levelThemeBuffer;
+	sf::Sound musicTheme;
 
 	si gameState = MENU;
 private:

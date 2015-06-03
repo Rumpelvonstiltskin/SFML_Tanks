@@ -1,6 +1,4 @@
 #include "Bullet.h"
-#include <iostream>
-#define OUTSIDE_AREA bulletPos.x > 1920 || bulletPos.x < 0 || bulletPos.y < 0 || bulletPos.y > 1080
 
 
 Bullet::Bullet(sf::Texture &texture, sf::Vector2f gunPos, float angle, float level)

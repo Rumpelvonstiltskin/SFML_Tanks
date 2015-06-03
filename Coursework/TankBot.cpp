@@ -1,7 +1,5 @@
 #include "TankBot.h"
 #include "Tank.h"
-#include <iostream>
-#define ELLIPSE_Y 260 * sqrt(1 -  pow(tankBody.getPosition().x - 960, 2) / 3450306) - 50
 
 
 TankBot::TankBot(sf::Texture &texture) : Tank(texture)
@@ -15,7 +13,7 @@ TankBot::TankBot(sf::Texture &texture) : Tank(texture)
 void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f firstBulletPosition, bool playerLife, bool enemyHit)
 {
 	this->enemyHit = enemyHit;
-	if (this->enemyHit) {
+	if (enemyHit) {
 		if (stats.armor) {
 			stats.armor -= 10;
 		}
@@ -170,6 +168,7 @@ void TankBot::kill()
 	if (respawnTime > 0) {
 		tankBody.setPosition(-300, -300);
 		tankGun.setPosition(-300, -300);
+		switcher.shoot = false;
 		respawnTime -= deltaTime;
 	}
 	else {

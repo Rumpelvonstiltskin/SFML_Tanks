@@ -110,7 +110,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Tank.h" />
     <ClInclude Include="TankBot.h" />
-    <ClInclude Include="td.h" />
+    <ClInclude Include="gamedef.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Coursework.rc" />

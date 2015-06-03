@@ -71,7 +71,7 @@
     <ClInclude Include="TankBot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="td.h">
+    <ClInclude Include="gamedef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-
+#include "gamedef.h"
 
 class MouseCursor
 {

@@ -56,8 +56,8 @@ Menu::Menu()
 	}
 
 	if (!menuThemeBuffer.loadFromFile("Resources//menu_theme.ogg")) exit(1);
-	menuTheme.setBuffer(menuThemeBuffer);
-	menuTheme.setLoop(true);
+	musicTheme.setBuffer(menuThemeBuffer);
+	musicTheme.setLoop(true);
 }
 
 
@@ -179,8 +179,11 @@ void Menu::update(float deltaTime, si gameState)
 	if (sfxVolumeState < -1) sfxVolumeState = -1;
 	if (sfxVolumeState > 9) sfxVolumeState = 9;
 
-	if (menuTheme.getStatus() == 0)
-		menuTheme.play();
+	if (gameState != GAME) {
+		if (musicTheme.getStatus() == 0)
+			musicTheme.play();
+	}
+	if (gameState = GAME) musicTheme.stop();
 }
 
 

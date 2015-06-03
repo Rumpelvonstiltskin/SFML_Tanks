@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Tank.h"
-#include "td.h"
+#include "gamedef.h"
 
 
 class GameInterface

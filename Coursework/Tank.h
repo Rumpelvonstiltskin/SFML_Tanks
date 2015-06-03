@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Bullet.h"
-#include "td.h"
+#include "gamedef.h"
 
 
 class Tank
@@ -36,11 +36,13 @@ protected:
 
 	sf::Sprite tankBody;
 	sf::Sprite tankGun;
-	sf::SoundBuffer buffer;
+	sf::SoundBuffer shotBuf;
 	sf::Sound shot;
 	sf::Mouse mouse;
 	sf::Texture bulletTexture;
 	sf::Sprite explosion;
+	sf::SoundBuffer upgradeBuf;
+	sf::Sound upgrade;
 
 	float rotationSpeed = 0.2;
 	float movementSpeed = 0.1;

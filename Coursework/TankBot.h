@@ -1,7 +1,7 @@
 #pragma once
 #include "Tank.h"
 #include <SFML/Graphics.hpp>
-
+#include "gamedef.h"
 
 class TankBot : public Tank
 {

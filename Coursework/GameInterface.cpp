@@ -1,5 +1,4 @@
 #include "GameInterface.h"
-#include <iostream>
 #include "Tank.h"
 
 GameInterface::GameInterface(sf::Texture &texture)

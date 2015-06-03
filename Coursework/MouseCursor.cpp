@@ -1,5 +1,4 @@
 #include "MouseCursor.h"
-#define CURSOR_PICKER_ZONE (mousePos.y > 840) || (pow(mousePos.x - 960, 2) / 3450306 + pow(mousePos.y + 120, 2) / 67600 <= 1)
 
 
 MouseCursor::MouseCursor(sf::Texture &texture)

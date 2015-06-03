@@ -24,6 +24,9 @@ Game::Game() : window(sf::VideoMode::getDesktopMode(), "Game", sf::Style::Fullsc
 	if (!gameTexture.loadFromFile("Resources//Game_Texture.png")) exit(1);
 	gameTexture.setSmooth(true);
 
+	if (!levelThemeBuffer.loadFromFile("Resources//level_theme.ogg")) exit(1);
+	musicTheme.setBuffer(levelThemeBuffer);
+
 	gameInterface = new GameInterface(gameTexture);
 	player = new Tank(gameTexture);
 	bot = new TankBot(gameTexture);
@@ -94,6 +97,15 @@ void Game::update(float deltaTime)
 
 	if (gameState != GAME && gameState !=EXIT)
 		menu->update(deltaTime, gameState);
+
+	if (gameState == GAME) {
+		if (musicTheme.getStatus() == 0)
+			musicTheme.play();
+			menu->musicTheme.stop();
+	}
+	else {
+		musicTheme.stop();
+	}
 }
 
 

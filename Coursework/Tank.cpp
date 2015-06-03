@@ -1,7 +1,4 @@
 #include "Tank.h"
-#include <iostream>
-#define ELLIPSE_Y 260 * sqrt(1 - pow(tankPos.x - 960, 2) / 3450306) - 50
-#define BATTLE_ZONE (mousePos.y < 840) && (pow(mousePos.x - 960, 2) / 3450306 + pow(mousePos.y + 120, 2) / 67600 >= 1)
 
 
 Tank::Tank(sf::Texture &texture)
@@ -29,8 +26,12 @@ Tank::Tank(sf::Texture &texture)
 	explosion.setOrigin(100, 100);
 
 	bulletTexture = texture;
-	buffer.loadFromFile("Resources//shot.ogg");
-	shot.setBuffer(buffer);
+
+	if (!shotBuf.loadFromFile("Resources//shot.ogg")) exit(1);
+	shot.setBuffer(shotBuf);
+
+	if (!upgradeBuf.loadFromFile("Resources//upgrade_1.ogg")) exit(1);
+	upgrade.setBuffer(upgradeBuf);
 }
 
 
@@ -149,6 +150,8 @@ void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit)
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && stats.upgradeAvailability == true) {
 		if (secondCounterTwo > 300) {
+			upgrade.play();
+
 			if (mousePos.y > 1035 && mousePos.y < 1075 && stats.gold >= 100) {
 				if (mousePos.x > 430 && mousePos.x < 470) {
 						stats.gold -= 100;
