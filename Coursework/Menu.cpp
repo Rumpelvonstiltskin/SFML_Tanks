@@ -1,3 +1,21 @@
+/*
+===========================================================================
+This project distributed under GNU GPLv3
+Copyright (C) 2015 Chabanenko Dmitry
+This file is part of the Tanks GPL Source Code.
+Tanks Source Code is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+Tanks Source Code is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
+===========================================================================
+*/
+
 #include "Menu.h"
 
 
@@ -55,7 +73,7 @@ Menu::Menu()
 		bar[i][j].setPosition(1000 + i * 50, 440 + j * 120);
 	}
 
-	if (!menuThemeBuffer.loadFromFile("Resources//menu_theme.ogg")) exit(1);
+	menuThemeBuffer.loadFromFile("Resources//menu_theme.ogg");
 	musicTheme.setBuffer(menuThemeBuffer);
 	musicTheme.setLoop(true);
 }
@@ -183,6 +201,7 @@ void Menu::update(float deltaTime, si gameState)
 		if (musicTheme.getStatus() == 0)
 			musicTheme.play();
 	}
+	musicTheme.setVolume(musicVolumeState * 10);
 	if (gameState = GAME) musicTheme.stop();
 }
 

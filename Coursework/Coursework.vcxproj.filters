@@ -88,4 +88,8 @@
   <ItemGroup>
     <None Include="..\Makefile" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\README.txt" />
+    <Text Include="..\COPYING.txt" />
+  </ItemGroup>
 </Project>

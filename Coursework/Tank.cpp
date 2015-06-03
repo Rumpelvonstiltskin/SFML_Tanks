@@ -1,3 +1,21 @@
+/*
+===========================================================================
+This project distributed under GNU GPLv3
+Copyright (C) 2015 Chabanenko Dmitry
+This file is part of the Tanks GPL Source Code.
+Tanks Source Code is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+Tanks Source Code is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
+===========================================================================
+*/
+
 #include "Tank.h"
 
 
@@ -27,10 +45,10 @@ Tank::Tank(sf::Texture &texture)
 
 	bulletTexture = texture;
 
-	if (!shotBuf.loadFromFile("Resources//shot.ogg")) exit(1);
+	shotBuf.loadFromFile("Resources//shot.ogg");
 	shot.setBuffer(shotBuf);
 
-	if (!upgradeBuf.loadFromFile("Resources//upgrade_1.ogg")) exit(1);
+	upgradeBuf.loadFromFile("Resources//upgrade_1.ogg");
 	sUpgrade.setBuffer(upgradeBuf);
 }
 
@@ -55,7 +73,7 @@ void Tank::draw(sf::RenderWindow &window)
 }
 
 
-void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit)
+void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVolumeState)
 {
 	this->enemyHit = enemyHit;
 	if (enemyHit) {
@@ -81,7 +99,8 @@ void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit)
 		if (bulletDelayTime >= 1000 - 100 * stats.asLevel) {
 			if (BATTLE_ZONE) {
 				bullets.push_back(new Bullet(bulletTexture, tankGun.getPosition(), tankGun.getRotation(), stats.bsLevel));
-				if (shotSoundDelayTime > 100) {
+				if (shotSoundDelayTime > 100 && life == true) {
+					shot.setVolume(sfxVolumeState * 10);
 					shot.play();
 					shotSoundDelayTime = 0;
 				}

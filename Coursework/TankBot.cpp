@@ -1,5 +1,24 @@
+/*
+===========================================================================
+This project distributed under GNU GPLv3
+Copyright (C) 2015 Chabanenko Dmitry
+This file is part of the Tanks GPL Source Code.
+Tanks Source Code is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+Tanks Source Code is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
+===========================================================================
+*/
+
 #include "TankBot.h"
 #include "Tank.h"
+#include <iostream>
 
 
 TankBot::TankBot(sf::Texture &texture) : Tank(texture)
@@ -10,7 +29,7 @@ TankBot::TankBot(sf::Texture &texture) : Tank(texture)
 }
 
 
-void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f firstBulletPosition, bool playerLife, bool enemyHit)
+void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f firstBulletPos, bool playerLife, bool enemyHit, si sfxVolumeState)
 {
 	this->deltaTime = deltaTime;
 	sf::Vector2f tankPos = tankBody.getPosition();
@@ -36,6 +55,7 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 			bulletDelayTime = 0;
 
 			if (shotSoundDelayTime > 100) {
+				shot.setVolume(sfxVolumeState * 10);
 				shot.play();
 				shotSoundDelayTime = 0;
 			}
@@ -72,6 +92,7 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 		stats.gold -= 100;
 		
 		if (sUpgrade.getStatus() == 0) {
+			sUpgrade.setVolume(sfxVolumeState * 10);
 			sUpgrade.play();
 		}
 
@@ -99,21 +120,25 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 
 	if (abs(tankBodyAngle - angle) < 30 || abs(tankBodyAngle - angle) > 330) {
 		tankGun.setRotation(angle);
-		if (playerLife)
+		if (playerLife) {
 			switcher.shoot = true;
+		}
+		else {
+			switcher.shoot = false;
+		}
 	}
 	else {
 		switcher.shoot = false;
 	}
 
 	if (decisionTime <= 0) {
-		decisionTime = (100 + static_cast <float> (rand() % 2000)) / 10;
-		decision = 3 + rand() % 2;
+		decisionTime = (100 + static_cast <float> (rand() % 3000)) / 10;
+		decision = 1 + rand() % 4;
 		time = 0;
-		if (rand() % 4) {
-			if (rand() % 2) {
+		if (rand() % 2) {
+			if (rand() % 3) {
 				decision = SHOT;
-				decisionTime = (300 + static_cast <float> (rand() % 3000)) / 10;
+				decisionTime = (1000 + static_cast <float> (rand() % 20000)) / 10;
 			}
 			else {
 				decisionTime = (1000 + static_cast <float> (rand() % 3000)) / 10;
@@ -133,27 +158,7 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 						}
 					}
 				}
-
-				if (tankBodyAngle > 100 && tankBodyAngle < 260) {
-					if (tankPos.y < 280) {
-						decision = FORWARD_MOVEMENT;
-					}
-					else if (tankPos.y > 1440) {
-						decision = BACKWARD_MOVEMENT;
-					}
-					else {
-						if (rand() % 2) {
-							decision = FORWARD_MOVEMENT;
-						}
-						else {
-							decision = BACKWARD_MOVEMENT;
-						}
-					}
-				}
 			}
-		}
-		else {
-
 		}
 	}
 
@@ -175,14 +180,14 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 			break;
 		case SHOT:
 			if (angle != tankGun.getRotation()) {
-				if (atan2(tankPos.x - playerPos.x, tankPos.y - playerPos.y) > 0) {
+				if (atan2(tankPos.x - playerPos.x, tankPos.y - playerPos.y) < 0) {
 					switcher.rotateRight = true;
 				}
 				else {
 					switcher.rotateRight = false;
 				}
 
-				if (atan2(tankPos.x - playerPos.x, tankPos.y - playerPos.y) < 0) {
+				if (atan2(tankPos.x - playerPos.x, tankPos.y - playerPos.y) > 0) {
 					switcher.rotateLeft = true;
 				}
 				else {

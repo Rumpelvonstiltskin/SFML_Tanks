@@ -1,3 +1,21 @@
+/*
+===========================================================================
+This project distributed under GNU GPLv3
+Copyright (C) 2015 Chabanenko Dmitry
+This file is part of the Tanks GPL Source Code.
+Tanks Source Code is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+Tanks Source Code is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
+===========================================================================
+*/
+
 #include "Game.h"
 
 
@@ -16,7 +34,7 @@ void Game::run()
 	}
 }
 
-Game::Game() : window(sf::VideoMode::getDesktopMode(), "Game", sf::Style::Fullscreen)
+Game::Game() : window(sf::VideoMode::getDesktopMode(), "Game")
 {
 	window.setMouseCursorVisible(false);
 	window.setFramerateLimit(144);
@@ -24,7 +42,7 @@ Game::Game() : window(sf::VideoMode::getDesktopMode(), "Game", sf::Style::Fullsc
 	if (!gameTexture.loadFromFile("Resources//Game_Texture.png")) exit(1);
 	gameTexture.setSmooth(true);
 
-	if (!levelThemeBuffer.loadFromFile("Resources//level_theme.ogg")) exit(1);
+	levelThemeBuffer.loadFromFile("Resources//level_theme.ogg");
 	musicTheme.setBuffer(levelThemeBuffer);
 
 	gameInterface = new GameInterface(gameTexture);
@@ -33,15 +51,10 @@ Game::Game() : window(sf::VideoMode::getDesktopMode(), "Game", sf::Style::Fullsc
 	dynamicCursor = new MouseCursor(gameTexture);
 	map = new Map(gameTexture);
 	menu = new Menu;
+	musicTheme.setVolume(menu->musicVolumeState * 10);
+	musicTheme.setLoop(true);
 
-	//GameInterface gameInterface = GameInterface(gameTexture);
-	//window.setVerticalSyncEnabled(true);
-	//int newH = (1920 * window.getSize().y) / window.getSize().x;
-	//int displace = (newH - 1080) / (-2);
-	//sf::View view = sf::View(sf::FloatRect(0, 0, 1920, newH));
-	//std::cout << view.getCenter().x << ' ' << view.getCenter().y << std::endl;
-	//view.setCenter(window.getSize().x / 2, (1080 - displace) / 2);
-	//window.setView(view);
+	window.setSize(sf::Vector2u(1280, 720));
 }
 
 
@@ -90,8 +103,8 @@ void Game::update(float deltaTime)
 	if (gameState == GAME) {
 		gameInterface->update(player->stats, deltaTime);
 		map->update(deltaTime);
-		player->update(deltaTime, bot->getTankPosition(), bot->enemyHit);
-		bot->update(deltaTime, player->getTankPosition(), player->getFirstBulletPosition(), player->life, player->enemyHit);
+		player->update(deltaTime, bot->getTankPosition(), bot->enemyHit, menu->sfxVolumeState);
+		bot->update(deltaTime, player->getTankPosition(), player->getFirstBulletPosition(), player->life, player->enemyHit, menu->sfxVolumeState);
 		dynamicCursor->update();
 	}
 
@@ -105,6 +118,10 @@ void Game::update(float deltaTime)
 	}
 	else {
 		musicTheme.stop();
+	}
+
+	if (gameState != GAME) {
+		musicTheme.setVolume(menu->musicVolumeState * 10);
 	}
 }
 
