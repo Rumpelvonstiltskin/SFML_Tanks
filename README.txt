@@ -1,5 +1,5 @@
-SFML Tanks coursework done by Chabanenko D. BSUIR group ¹453503
-===============================================================
+SFML Tanks coursework done by Chabanenko D. BSUIR group 453503
+==============================================================
 
 Project done with SFML version 2.3
 
