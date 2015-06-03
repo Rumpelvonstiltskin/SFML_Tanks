@@ -13,7 +13,7 @@ public:
 		bool moveForward = false;
 		bool moveBackward = false;
 		bool rotateRight = false;
-		bool rotationLeft = false;
+		bool rotateLeft = false;
 		bool shoot = false;
 	} switcher;
 private:

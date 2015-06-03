@@ -73,20 +73,64 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 	if (abs(tankBodyAngle - angle) < 30 || abs(tankBodyAngle - angle) > 330) {
 		tankGun.setRotation(angle);
 		if (playerLife)
-		switcher.shoot = true;
+			switcher.shoot = true;
 	}
 	else {
 		switcher.shoot = false;
 	}
 
-	// upgrade x = 1840, y = 540
-		if (decisionTime <= 0) {
-			decisionTime = (1.0 + static_cast <float> (rand() % 5000)) / 10.0;
-			time = 0;
-			decision = 1 + static_cast <int> (rand()) / (static_cast <int> (RAND_MAX / (5 - 1)));
-		}
+	if (decisionTime <= 0) {
+		decisionTime = (100 + static_cast <float> (rand() % 2000)) / 10;
+		decision = 3 + rand() % 2;
+		time = 0;
+		if (rand() % 4) {
+			if (rand() % 2) {
+				decision = SHOT;
+				decisionTime = (300 + static_cast <float> (rand() % 3000)) / 10;
+			}
+			else {
+				decisionTime = (1000 + static_cast <float> (rand() % 3000)) / 10;
+				if (tankBodyAngle > 280 && tankBodyAngle < 80) {
+					if (tankPos.y < 280) {
+						decision = BACKWARD_MOVEMENT;
+					}
+					else if (tankPos.y > 1440) {
+						decision = FORWARD_MOVEMENT;
+					}
+					else {
+						if (rand() % 2) {
+							decision = FORWARD_MOVEMENT;
+						}
+						else {
+							decision = BACKWARD_MOVEMENT;
+						}
+					}
+				}
 
-		decisionTime -= deltaTime;
+				if (tankBodyAngle > 100 && tankBodyAngle < 260) {
+					if (tankPos.y < 280) {
+						decision = FORWARD_MOVEMENT;
+					}
+					else if (tankPos.y > 1440) {
+						decision = BACKWARD_MOVEMENT;
+					}
+					else {
+						if (rand() % 2) {
+							decision = FORWARD_MOVEMENT;
+						}
+						else {
+							decision = BACKWARD_MOVEMENT;
+						}
+					}
+				}
+			}
+		}
+		else {
+
+		}
+	}
+
+	decisionTime -= deltaTime;
 
 	if (decisionTime > 0) {
 		switch (decision) {
@@ -97,12 +141,31 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 			switcher.moveBackward = true;
 			break;
 		case ROTATION_LEFT:
-			switcher.rotationLeft = true;
+			switcher.rotateLeft = true;
 			break;
 		case ROTATION_RIGHT:
 			switcher.rotateRight = true;
 			break;
 		case SHOT:
+			if (angle != tankGun.getRotation()) {
+				if (atan2(tankPos.x - playerPos.x, tankPos.y - playerPos.y) > 0) {
+					switcher.rotateRight = true;
+				}
+				else {
+					switcher.rotateRight = false;
+				}
+
+				if (atan2(tankPos.x - playerPos.x, tankPos.y - playerPos.y) < 0) {
+					switcher.rotateLeft = true;
+				}
+				else {
+					switcher.rotateLeft = false;
+				}
+			}
+			else {
+				switcher.rotateRight = false;
+				switcher.rotateLeft = false;
+			}
 			break;
 		default:
 			break;
@@ -111,8 +174,34 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 	else {
 		switcher.moveForward = false;
 		switcher.moveBackward = false;
-		switcher.rotationLeft = false;
+		switcher.rotateLeft = false;
 		switcher.rotateRight = false;
+	}
+
+	// move
+	movementSpeed = 0.3 + 0.1 * stats.msLevel;
+	tankBodyAngle = tankBodyAngle * 3.14 / 180;
+
+	if (switcher.rotateLeft) {
+		tankBody.rotate(-rotationSpeed * deltaTime);
+		tankGun.rotate(-rotationSpeed * deltaTime);
+		return;
+	}
+
+	if (switcher.rotateRight) {
+		tankBody.rotate(rotationSpeed * deltaTime);
+		tankGun.rotate(rotationSpeed * deltaTime);
+		return;
+	}
+
+	if (switcher.moveForward) {
+		tankBody.move(movementSpeed * sin(tankBodyAngle) * deltaTime, -movementSpeed * cos(tankBodyAngle) * deltaTime);
+		tankGun.move(movementSpeed * sin(tankBodyAngle) * deltaTime, -movementSpeed * cos(tankBodyAngle) * deltaTime);
+	}
+
+	if (switcher.moveBackward) {
+		tankBody.move(-movementSpeed * sin(tankBodyAngle) * deltaTime, movementSpeed * cos(tankBodyAngle) * deltaTime);
+		tankGun.move(-movementSpeed * sin(tankBodyAngle) * deltaTime, movementSpeed * cos(tankBodyAngle) * deltaTime);
 	}
 
 	// collision
@@ -134,31 +223,6 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 	if (tankPos.y > 767.5) {
 		tankBody.setPosition(tankPos.x, 767.5);
 		tankGun.setPosition(tankPos.x, 767.5);
-	}
-
-	movementSpeed = 0.3 + 0.1 * stats.msLevel;
-	tankBodyAngle = tankBodyAngle * 3.14 / 180;
-
-	if (switcher.rotationLeft) {
-		tankBody.rotate(-rotationSpeed * deltaTime);
-		tankGun.rotate(-rotationSpeed * deltaTime);
-		return;
-	}
-		
-	if (switcher.rotateRight) {
-		tankBody.rotate(rotationSpeed * deltaTime);
-		tankGun.rotate(rotationSpeed * deltaTime);
-		return;
-	}
-
-	if (switcher.moveForward) {
-		tankBody.move(movementSpeed * sin(tankBodyAngle) * deltaTime, -movementSpeed * cos(tankBodyAngle) * deltaTime);
-		tankGun.move(movementSpeed * sin(tankBodyAngle) * deltaTime, -movementSpeed * cos(tankBodyAngle) * deltaTime);
-	}
-
-	if (switcher.moveBackward) {
-		tankBody.move(-movementSpeed * sin(tankBodyAngle) * deltaTime, movementSpeed * cos(tankBodyAngle) * deltaTime);
-		tankGun.move(-movementSpeed * sin(tankBodyAngle) * deltaTime, movementSpeed * cos(tankBodyAngle) * deltaTime);
 	}
 }
 

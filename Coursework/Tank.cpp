@@ -116,6 +116,8 @@ void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit)
 		return;
 	}
 
+	life = true;
+
 	// gun rotation
 	sf::Vector2f gunPos = tankGun.getPosition();
 
@@ -255,6 +257,8 @@ void Tank::kill()
 	if (respawnTime > 0) {
 		tankBody.setPosition(-300, -300);
 		tankGun.setPosition(-300, -300);
+		tankBody.setRotation(0);
+		tankGun.setRotation(0);
 		respawnTime -= deltaTime;
 	}
 	else {
