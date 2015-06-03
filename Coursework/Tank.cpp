@@ -31,7 +31,7 @@ Tank::Tank(sf::Texture &texture)
 	shot.setBuffer(shotBuf);
 
 	if (!upgradeBuf.loadFromFile("Resources//upgrade_1.ogg")) exit(1);
-	upgrade.setBuffer(upgradeBuf);
+	sUpgrade.setBuffer(upgradeBuf);
 }
 
 
@@ -60,10 +60,10 @@ void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit)
 	this->enemyHit = enemyHit;
 	if (enemyHit) {
 		if (stats.armor) {
-			stats.armor -= 10;
+			stats.armor -= 20;
 		}
 		else {
-			stats.healingPoints -= 10;
+			stats.healingPoints -= 20;
 		}
 	}
 	this->enemyHit = false;
@@ -152,7 +152,7 @@ void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit)
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && stats.upgradeAvailability == true) {
 		if (secondCounterTwo > 300) {
-			upgrade.play();
+			sUpgrade.play();
 
 			if (mousePos.y > 1035 && mousePos.y < 1075 && stats.gold >= 100) {
 				if (mousePos.x > 430 && mousePos.x < 470) {

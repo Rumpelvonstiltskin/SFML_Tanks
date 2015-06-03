@@ -20,7 +20,7 @@ public:
 	struct stats {
 		si healingPoints = 100;
 		si armor = 0;
-		si gold = 7000;
+		si gold = 500;
 		si msLevel = 1;
 		si asLevel = 1;
 		si bsLevel = 1;
@@ -42,7 +42,7 @@ protected:
 	sf::Texture bulletTexture;
 	sf::Sprite explosion;
 	sf::SoundBuffer upgradeBuf;
-	sf::Sound upgrade;
+	sf::Sound sUpgrade;
 
 	float rotationSpeed = 0.2;
 	float movementSpeed = 0.1;

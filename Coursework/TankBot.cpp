@@ -12,20 +12,20 @@ TankBot::TankBot(sf::Texture &texture) : Tank(texture)
 
 void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f firstBulletPosition, bool playerLife, bool enemyHit)
 {
-	this->enemyHit = enemyHit;
-	if (enemyHit) {
-		if (stats.armor) {
-			stats.armor -= 10;
-		}
-		else {
-			stats.healingPoints -= 10;
-		}
-	}
-	this->enemyHit = false;
-
 	this->deltaTime = deltaTime;
 	sf::Vector2f tankPos = tankBody.getPosition();
 	float tankBodyAngle = tankBody.getRotation();
+
+	this->enemyHit = enemyHit;
+	if (enemyHit) {
+		if (stats.armor) {
+			stats.armor -= 20;
+		}
+		else {
+			stats.healingPoints -= 20;
+		}
+	}
+	this->enemyHit = false;
 
 	bulletDelayTime += deltaTime;
 	shotSoundDelayTime += deltaTime;
@@ -68,6 +68,33 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 	}
 
 	//bot decisions
+	if (stats.gold >= 100) {
+		stats.gold -= 100;
+		
+		if (sUpgrade.getStatus() == 0) {
+			sUpgrade.play();
+		}
+
+		upgrade = 1 + rand() % 4;
+
+		switch (upgrade) {
+			case 1:
+				stats.msLevel += 1;
+				break;
+			case 2:
+				stats.asLevel += 1;
+				break;
+			case 3:
+				stats.bsLevel += 1;
+				break;
+			case 4:
+				stats.armor += 1;
+				break;
+			default:
+				break;
+		}
+	}
+
 	float angle = atan2(tankPos.y - playerPos.y, tankPos.x - playerPos.x) * 180 / 3.14 + 270;
 
 	if (abs(tankBodyAngle - angle) < 30 || abs(tankBodyAngle - angle) > 330) {

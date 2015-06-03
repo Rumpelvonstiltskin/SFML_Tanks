@@ -24,6 +24,7 @@ private:
 	float time = 0;
 	float decisionTime = 0;
 	si decision;
+	si upgrade;
 private:
 	void kill();
 };
