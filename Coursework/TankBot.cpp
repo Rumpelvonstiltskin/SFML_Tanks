@@ -1,5 +1,6 @@
 #include "TankBot.h"
 #include "Tank.h"
+#include <iostream>
 #define ELLIPSE_Y 260 * sqrt(1 -  pow(tankBody.getPosition().x - 960, 2) / 3450306) - 50
 
 
@@ -13,15 +14,16 @@ TankBot::TankBot(sf::Texture &texture) : Tank(texture)
 
 void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f firstBulletPosition, bool playerLife, bool enemyHit)
 {
-	this->enemyHit = false;
-	if (enemyHit) {
+	this->enemyHit = enemyHit;
+	if (this->enemyHit) {
 		if (stats.armor) {
-			stats.armor -= 5;
+			stats.armor -= 10;
 		}
 		else {
-			stats.healing_points -= 5;
+			stats.healingPoints -= 10;
 		}
 	}
+	this->enemyHit = false;
 
 	this->deltaTime = deltaTime;
 	sf::Vector2f tankPos = tankBody.getPosition();
@@ -59,6 +61,12 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 
 	for (it = bullets.begin(); it != bullets.end(); it++) {
 		(*it)->update(deltaTime, playerPos);
+	}
+
+	if (stats.healingPoints <= 0) {
+		life = false;
+		kill();
+		return;
 	}
 
 	//bot decisions
@@ -130,7 +138,7 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 		tankGun.setPosition(tankPos.x, 767.5);
 	}
 
-	movementSpeed = 0.3 + stats.msLevel * 0.1;
+	movementSpeed = 0.3 + 0.1 * stats.msLevel;
 	tankBodyAngle = tankBodyAngle * 3.14 / 180;
 
 	if (switcher.rotationLeft) {
@@ -153,6 +161,22 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 	if (switcher.moveBackward) {
 		tankBody.move(-movementSpeed * sin(tankBodyAngle) * deltaTime, movementSpeed * cos(tankBodyAngle) * deltaTime);
 		tankGun.move(-movementSpeed * sin(tankBodyAngle) * deltaTime, movementSpeed * cos(tankBodyAngle) * deltaTime);
+	}
+}
+
+
+void TankBot::kill()
+{
+	if (respawnTime > 0) {
+		tankBody.setPosition(-300, -300);
+		tankGun.setPosition(-300, -300);
+		respawnTime -= deltaTime;
+	}
+	else {
+		tankBody.setPosition(1420, 500);
+		tankGun.setPosition(1420, 500);
+		stats.healingPoints = 100;
+		respawnTime = 3000;
 	}
 }
 

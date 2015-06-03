@@ -95,7 +95,7 @@ void GameInterface::update(struct Tank::stats stats, float deltaTime)
 		}
 	}
 
-	playerHealth.setString("Health : " + std::to_string(stats.healing_points));
+	playerHealth.setString("Health : " + std::to_string(stats.healingPoints));
 	playerArmor.setString("Armor : " + std::to_string(stats.armor));
 	playerGold.setString("Gold : " + std::to_string(stats.gold));
 	playerMSLevel.setString("MS   LEVEL : " + std::to_string(stats.msLevel));

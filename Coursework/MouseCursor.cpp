@@ -43,5 +43,4 @@ void MouseCursor::draw(sf::RenderWindow &window)
 
 MouseCursor::~MouseCursor()
 {
-
 }

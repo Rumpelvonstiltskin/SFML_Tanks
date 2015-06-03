@@ -20,9 +20,11 @@ private:
 	enum decisions {
 		FORWARD_MOVEMENT = 1, BACKWARD_MOVEMENT, ROTATION_LEFT, ROTATION_RIGHT, SHOT
 	};
-
+	
 	float time = 0;
 	float decisionTime = 0;
 	si decision;
+private:
+	void kill();
 };
 

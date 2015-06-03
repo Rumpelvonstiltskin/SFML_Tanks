@@ -18,8 +18,8 @@ Bullet::Bullet(sf::Texture &texture, sf::Vector2f gunPos, float angle, float lev
 	angle = angle * 3.14 / 180;
 	bullet.setPosition(gunPos.x + 120 * sin(angle), gunPos.y - 120 * cos(angle));
 
-	dx = (1 + (level / 2)) * sin(angle);
-	dy = -(1 + (level / 2)) * cos(angle);
+	dx = (0.5 + level / 5) * sin(angle);
+	dy = -(0.5 + level / 5) * cos(angle);
 
 	this->gunPos = gunPos;
 	this->angle = angle;

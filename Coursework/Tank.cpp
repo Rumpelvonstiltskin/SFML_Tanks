@@ -56,22 +56,21 @@ void Tank::draw(sf::RenderWindow &window)
 
 void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit)
 {
-	this->enemyHit = false;
+	this->enemyHit = enemyHit;
 	if (enemyHit) {
 		if (stats.armor) {
-			stats.armor -= 5;
+			stats.armor -= 10;
 		}
 		else {
-			stats.healing_points -= 5;
+			stats.healingPoints -= 10;
 		}
 	}
+	this->enemyHit = false;
 
 	this->deltaTime = deltaTime;
 	sf::Vector2f tankPos = tankBody.getPosition();
 	sf::Vector2i mousePos = mouse.getPosition();
 	float tankBodyAngle = tankBody.getRotation();
-
-	if (!stats.healing_points) life = false;
 
 	// shot
 	bulletDelayTime += deltaTime;
@@ -98,8 +97,6 @@ void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit)
 			this->enemyHit = true;
 		}
 
-		this->enemyHit = false;
-
 		if (b->life == false) {
 			it = bullets.erase(it);
 			delete b;
@@ -109,6 +106,13 @@ void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit)
 
 	for (it = bullets.begin(); it != bullets.end(); it++) {
 		(*it)->update(deltaTime, botPos);
+	}
+
+
+	if (stats.healingPoints <= 0) {
+		life = false;
+		kill();
+		return;
 	}
 
 	// gun rotation
@@ -175,7 +179,7 @@ void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit)
 	//std::cout << mouse.getPosition().x << "    " << mouse.getPosition().y << std::endl; // DELETE THIS
 
 	// move
-	movementSpeed = 0.3 + stats.msLevel * 0.1;
+	movementSpeed = 0.3 + 0.1 * stats.msLevel;
 	tankBodyAngle = tankBodyAngle * 3.14 / 180;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
@@ -240,6 +244,22 @@ sf::Vector2f Tank::getTankPosition()
 float Tank::getGunRotation()
 {
 	return tankGun.getRotation();
+}
+
+
+void Tank::kill()
+{
+	if (respawnTime > 0) {
+		tankBody.setPosition(-300, -300);
+		tankGun.setPosition(-300, -300);
+		respawnTime -= deltaTime;
+	}
+	else {
+		tankBody.setPosition(500, 500);
+		tankGun.setPosition(500, 500);
+		stats.healingPoints = 100;
+		respawnTime = 3000;
+	}
 }
 
 

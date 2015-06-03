@@ -18,7 +18,7 @@ public:
 	float getGunRotation();
 public:
 	struct stats {
-		si healing_points = 100;
+		si healingPoints = 100;
 		si armor = 0;
 		si gold = 7000;
 		si msLevel = 1;
@@ -49,6 +49,7 @@ protected:
 	float shotSoundDelayTime = 0;
 	float deltaTime;
 	float hitDelayTime = 100;
+	float respawnTime = 3000;
 
 	float secondCounterOne = 0;
 	float secondCounterTwo = 0;
@@ -56,4 +57,5 @@ protected:
 	bool rotate = false;
 protected:
 	void explode(sf::Vector2f hitPos);
+	virtual void kill();
 };
