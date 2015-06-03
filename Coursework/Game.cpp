@@ -34,7 +34,7 @@ void Game::run()
 	}
 }
 
-Game::Game() : window(sf::VideoMode::getDesktopMode(), "Game")
+Game::Game() : window(sf::VideoMode(1920, 1080), "SFML Tanks", sf::Style::Resize)
 {
 	window.setMouseCursorVisible(false);
 	window.setFramerateLimit(144);
