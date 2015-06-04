@@ -34,7 +34,7 @@ void Game::run()
 	}
 }
 
-Game::Game() : window(sf::VideoMode(1920, 1080), "SFML Tanks", sf::Style::Resize)
+Game::Game() : window(sf::VideoMode(1920, 1080), "SFML Tanks", sf::Style::Fullscreen)
 {
 	window.setMouseCursorVisible(false);
 	window.setFramerateLimit(144);
@@ -54,7 +54,10 @@ Game::Game() : window(sf::VideoMode(1920, 1080), "SFML Tanks", sf::Style::Resize
 	musicTheme.setVolume(menu->musicVolumeState * 10);
 	musicTheme.setLoop(true);
 
-	window.setSize(sf::Vector2u(1280, 720));
+	int newH = (1920 * 1080) / 1920;
+	int displace = (newH - 1080) / (-2);
+	sf::View view(sf::FloatRect(0, displace, 1920, newH));
+	window.setView(view);
 }
 
 

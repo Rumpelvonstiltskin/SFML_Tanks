@@ -31,7 +31,6 @@ private:
 	sf::Sprite targetCursor;
 	sf::Sprite pickerCursor;
 	sf::Mouse mouse;
-
 	bool changeCursor = false;
 };
 
