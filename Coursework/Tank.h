@@ -38,7 +38,7 @@ public:
 	struct stats {
 		si healingPoints = 100;
 		si armor = 0;
-		si gold = 500;
+		si gold = 100;
 		si msLevel = 1;
 		si asLevel = 1;
 		si bsLevel = 1;

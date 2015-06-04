@@ -97,7 +97,7 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 			sUpgrade.play();
 		}
 
-		upgrade = 1 + rand() % 4;
+		upgrade = 1 + rand() % 3;
 
 		switch (upgrade) {
 			case 1:
