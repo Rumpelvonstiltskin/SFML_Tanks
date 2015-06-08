@@ -38,7 +38,7 @@ void MouseCursor::update(float& deltaTime, sf::Vector2f& mousePos)
 	else {
 		hideDelayTime += deltaTime;
 
-		if (hideDelayTime > 500) {
+		if (hideDelayTime > MOUSE_HIDE_DELAY_TIME) {
 			showCursor = false;
 		}
 

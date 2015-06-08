@@ -26,7 +26,7 @@ public:
 	bool life = true;
 	bool hit = false;
 public:
-	Bullet(sf::Texture& texture, sf::Vector2f gunPos, float angle, float level);
+	Bullet(sf::Texture& texture, sf::Vector2f gunPos, float gunAngle, float level);
 	~Bullet();
 
 	void update(float& deltaTime, sf::Vector2f tankEnemyPos); 
@@ -42,6 +42,6 @@ private:
 	float delayTime = 25;
 	float dx = 35;
 	float dy = 35;
-	float angle = 0;
+	float gunAngle = 0;
 };
 

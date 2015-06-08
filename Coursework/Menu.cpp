@@ -123,7 +123,7 @@ void Menu::update(float& deltaTime, si gameState)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 		if (delayTime > 200) {
-			if (gameState == 4) {
+			if (gameState == MENU) {
 				if (selectedItemIndexMenu <= 2) {
 					item[selectedItemIndexMenu].setColor(sf::Color::White);
 					selectedItemIndexMenu++;
@@ -136,7 +136,7 @@ void Menu::update(float& deltaTime, si gameState)
 				}
 			}
 
-			if (gameState == 1) {
+			if (gameState == OPTIONS) {
 				if (selectedItemIndexOptions == 5) {
 					item[selectedItemIndexOptions].setColor(sf::Color::White);
 					selectedItemIndexOptions = 4;
@@ -209,16 +209,16 @@ void Menu::update(float& deltaTime, si gameState)
 void Menu::draw(sf::RenderWindow& window)
 {
 	window.clear(sf::Color(221, 201, 93));
-	if (gameState == 4)
+	if (gameState == MENU)
 	for (int i = 0; i < 4; i++) {
 		window.draw(item[i]);
 	}
 
-	if (gameState == 2)
+	if (gameState == ABOUT)
 	for (int i = 0; i <= 2; i++)
 		window.draw(aboutItem[i]);
 
-	if (gameState == 1) {
+	if (gameState == OPTIONS) {
 		for (int j = 0; j <= 1; j++)
 			for (int i = 0; i <= 9; i++) {
 				window.draw(bar[i][j]);

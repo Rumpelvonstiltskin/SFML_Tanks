@@ -19,7 +19,7 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 #include "Bullet.h"
 
 
-Bullet::Bullet(sf::Texture& texture, sf::Vector2f gunPos, float angle, float level)
+Bullet::Bullet(sf::Texture& texture, sf::Vector2f gunPos, float gunAngle, float level)
 {
 	bullet.setTexture(texture);
 	bulletTexture.setSmooth(true);
@@ -31,14 +31,14 @@ Bullet::Bullet(sf::Texture& texture, sf::Vector2f gunPos, float angle, float lev
 	muzzleFlash.setOrigin(100, 100);
 	muzzleFlash.setScale(0.5, 0.5);
 
-	angle = angle * PI / 180;
-	bullet.setPosition(gunPos.x + 120 * sin(angle), gunPos.y - 120 * cos(angle));
+	gunAngle = gunAngle * PI / 180;
+	bullet.setPosition(gunPos.x + GUN_LENGTH * sin(gunAngle), gunPos.y - GUN_LENGTH * cos(gunAngle));
 
-	dx = (0.5 + level / 5) * sin(angle);
-	dy = -(0.5 + level / 5) * cos(angle);
+	dx = (0.5 + level / 5) * sin(gunAngle);
+	dy = -(0.5 + level / 5) * cos(gunAngle);
 
 	this->gunPos = gunPos;
-	this->angle = angle;
+	this->gunAngle = gunAngle;
 }
 
 
@@ -55,7 +55,7 @@ void Bullet::update(float& deltaTime, sf::Vector2f tankEnemyPos)
 		life = false;
 	}
 
-	muzzleFlash.setPosition(gunPos.x + 120 * sin(angle), gunPos.y - 120 * cos(angle));
+	muzzleFlash.setPosition(gunPos.x + GUN_LENGTH * sin(gunAngle), gunPos.y - GUN_LENGTH * cos(gunAngle));
 	bullet.move(dx * deltaTime, dy * deltaTime);
 	delayTime -= deltaTime;
 

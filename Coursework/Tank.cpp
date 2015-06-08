@@ -78,10 +78,10 @@ void Tank::update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVo
 	this->enemyHit = enemyHit;
 	if (enemyHit) {
 		if (stats.armor) {
-			stats.armor -= 20;
+			stats.armor -= DAMAGE;
 		}
 		else {
-			stats.healingPoints -= 20;
+			stats.healingPoints -= DAMAGE;
 		}
 	}
 	this->enemyHit = false;
@@ -163,7 +163,7 @@ void Tank::update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVo
 		secondCounterOne = 0;
 	}
 
-	if (tankPos.x > 70 && tankPos.x < 100 && tankPos.y > 525 && tankPos.y < 555) {
+	if (UPGRADE_AREA) {
 		stats.upgradeAvailability = true;
 	}
 	else {
@@ -229,24 +229,24 @@ void Tank::update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVo
 	}
 
 	// collision
-	if (tankPos.x > 762.5) {
-		tankBody.setPosition(762.5, tankPos.y);
-		tankGun.setPosition(762.5, tankPos.y);
+	if (tankPos.x > LEFT_SHORE_X) {
+		tankBody.setPosition(LEFT_SHORE_X, tankPos.y);
+		tankGun.setPosition(LEFT_SHORE_X, tankPos.y);
 	}
 
-	if (tankPos.x < 75) {
-		tankBody.setPosition(75, tankPos.y);
-		tankGun.setPosition(75, tankPos.y);
+	if (tankPos.x < LEFT_BORDER_X) {
+		tankBody.setPosition(LEFT_BORDER_X, tankPos.y);
+		tankGun.setPosition(LEFT_BORDER_X, tankPos.y);
 	}
 
-	if (tankPos.y < ELLIPSE_Y) {
-		tankBody.setPosition(tankPos.x, ELLIPSE_Y + 0.1);
-		tankGun.setPosition(tankPos.x, ELLIPSE_Y + 0.1);
+	if (tankPos.y < HIGHER_BORDER_Y) {
+		tankBody.setPosition(tankPos.x, HIGHER_BORDER_Y + 0.1);
+		tankGun.setPosition(tankPos.x, HIGHER_BORDER_Y + 0.1);
 	}
 
-	if (tankPos.y > 767.5) {
-		tankBody.setPosition(tankPos.x, 767.5);
-		tankGun.setPosition(tankPos.x, 767.5);
+	if (tankPos.y > LOWER_BORDER_Y) {
+		tankBody.setPosition(tankPos.x, LOWER_BORDER_Y);
+		tankGun.setPosition(tankPos.x, LOWER_BORDER_Y);
 	}
 
 }

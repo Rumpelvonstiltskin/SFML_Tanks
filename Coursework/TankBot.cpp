@@ -238,24 +238,24 @@ void TankBot::update(float& deltaTime, sf::Vector2f playerPos, sf::Vector2f firs
 	}
 
 	// collision
-	if (tankPos.x < 762.5 + 145 + 270) {
-		tankBody.setPosition(762.5 + 145 + 270, tankPos.y);
-		tankGun.setPosition(762.5 + 145 + 270, tankPos.y);
+	if (tankPos.x < RIGHT_SHORE_X) {
+		tankBody.setPosition(RIGHT_SHORE_X, tankPos.y);
+		tankGun.setPosition(RIGHT_SHORE_X, tankPos.y);
 	}
 
-	if (tankPos.x > 1845) {
-		tankBody.setPosition(1845, tankPos.y);
-		tankGun.setPosition(1845, tankPos.y);
+	if (tankPos.x > RIGHT_BORDER_X) {
+		tankBody.setPosition(RIGHT_BORDER_X, tankPos.y);
+		tankGun.setPosition(RIGHT_BORDER_X, tankPos.y);
 	}
 
-	if (tankPos.y < ELLIPSE_Y) {
-		tankBody.setPosition(tankPos.x, ELLIPSE_Y + 0.1);
-		tankGun.setPosition(tankPos.x, ELLIPSE_Y + 0.1);
+	if (tankPos.y < HIGHER_BORDER_Y) {
+		tankBody.setPosition(tankPos.x, HIGHER_BORDER_Y + 0.1);
+		tankGun.setPosition(tankPos.x, HIGHER_BORDER_Y + 0.1);
 	}
 
-	if (tankPos.y > 767.5) {
-		tankBody.setPosition(tankPos.x, 767.5);
-		tankGun.setPosition(tankPos.x, 767.5);
+	if (tankPos.y > LOWER_BORDER_Y) {
+		tankBody.setPosition(tankPos.x, LOWER_BORDER_Y);
+		tankGun.setPosition(tankPos.x, LOWER_BORDER_Y);
 	}
 }
 

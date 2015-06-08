@@ -76,7 +76,7 @@ void Game::processEvents()
 						gameState = MENU;
 					}
 					break;
-				case sf::Keyboard::Space:
+				case sf::Keyboard::Return:
 					if (menu->GetPressedItem() == GAME) {
 						gameState = GAME;
 					}
