@@ -50,7 +50,8 @@ void Bullet::update(float& deltaTime, sf::Vector2f tankEnemyPos)
 {
 	sf::Vector2f bulletPos = bullet.getPosition();
 
-	if (bulletPos.x < tankEnemyPos.x + 70 && bulletPos.x > tankEnemyPos.x - 70 && bulletPos.y > tankEnemyPos.y - 65 && bulletPos.y < tankEnemyPos.y + 65) {
+	if (bulletPos.x < tankEnemyPos.x + 70 && bulletPos.x > tankEnemyPos.x - 70 && 
+		bulletPos.y > tankEnemyPos.y - 65 && bulletPos.y < tankEnemyPos.y + 65) {
 		hit = true;
 		life = false;
 	}

@@ -53,6 +53,7 @@ Game::Game() : window(sf::VideoMode(width, height), "SFML Tanks", sf::Style::Ful
 	dynamicCursor = new MouseCursor(gameTexture);
 	map = new Map(gameTexture);
 	menu = new Menu;
+
 	musicTheme.setVolume(menu->musicVolumeState * 10);
 	musicTheme.setLoop(true);
 
@@ -109,13 +110,14 @@ void Game::update(float deltaTime)
 		gameInterface->update(player->stats, deltaTime);
 		map->update(deltaTime);
 		player->update(deltaTime, bot->getTankPosition(), bot->enemyHit, menu->sfxVolumeState, mousePos);
-		bot->update(deltaTime, player->getTankPosition(), player->getFirstBulletPosition(), player->life, player->enemyHit, menu->sfxVolumeState);
+		bot->update(deltaTime, player->getTankPosition(), player->getFirstBulletPosition(),
+					player->life, player->enemyHit, menu->sfxVolumeState);
 		dynamicCursor->update(deltaTime, mousePos);
 	}
 
 	if (gameState != GAME && gameState !=EXIT)
 		menu->update(deltaTime, gameState);
-
+	
 	if (gameState == GAME) {
 		if (musicTheme.getStatus() == 0)
 			musicTheme.play();
@@ -167,4 +169,10 @@ void Game::render()
 
 Game::~Game()
 {
+	delete gameInterface;
+	delete player;
+	delete bot;
+	delete dynamicCursor;
+	delete map ;
+	delete menu;
 }
