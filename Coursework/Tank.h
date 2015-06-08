@@ -31,7 +31,7 @@ public:
 	sf::Vector2f getTankPosition();
 	sf::Vector2f getFirstBulletPosition();
 
-	virtual void update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVolumeState);
+	virtual void update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVolumeState, sf::Vector2f mousePos);
 	void draw(sf::RenderWindow& window);
 	float getGunRotation();
 public:

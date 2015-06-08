@@ -73,7 +73,7 @@ void Tank::draw(sf::RenderWindow& window)
 }
 
 
-void Tank::update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVolumeState)
+void Tank::update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVolumeState, sf::Vector2f mousePos)
 {
 	this->enemyHit = enemyHit;
 	if (enemyHit) {
@@ -87,7 +87,7 @@ void Tank::update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVo
 	this->enemyHit = false;
 
 	this->deltaTime = deltaTime;
-	sf::Vector2i mousePos = mouse.getPosition();
+	//sf::Vector2i mousePos = mouse.getPosition();
 	sf::Vector2f tankPos = tankBody.getPosition();
 	float tankBodyAngle = tankBody.getRotation();
 
