@@ -27,3 +27,5 @@ enum gameStates {
 #define CURSOR_PICKER_ZONE (mousePos.y > 840) || (pow(mousePos.x - 960, 2) / 3450306 + pow(mousePos.y + 120, 2) / 67600 <= 1)
 #define ELLIPSE_Y 260 * sqrt(1 - pow(tankPos.x - 960, 2) / 3450306) - 50
 #define BATTLE_ZONE (mousePos.y < 840) && (pow(mousePos.x - 960, 2) / 3450306 + pow(mousePos.y + 120, 2) / 67600 >= 1)
+
+#define PI 3.14159265

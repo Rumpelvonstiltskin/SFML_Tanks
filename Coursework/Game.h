@@ -33,6 +33,8 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 #include "TankBot.h"
 #include "gamedef.h"
 
+extern si width, height;
+
 class Game {
 public:
 	Game();
@@ -51,6 +53,7 @@ private:
 	GameInterface* gameInterface;
 	sf::SoundBuffer levelThemeBuffer;
 	sf::Sound musicTheme;
+	sf::Mouse mouse;
 
 	si gameState = MENU;
 private:
@@ -58,5 +61,3 @@ private:
 	void render();
 	void processEvents();
 };
-
-

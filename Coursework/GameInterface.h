@@ -25,11 +25,11 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 class GameInterface
 {
 public:
-	GameInterface(sf::Texture &texture);
+	GameInterface(sf::Texture& texture);
 	~GameInterface();
 
-	void update(struct Tank::stats stats, float deltaTime);
-	void draw(sf::RenderWindow &window);
+	void update(struct Tank::stats stats, float& deltaTime);
+	void draw(sf::RenderWindow& window);
 private:
 	sf::Sprite plus[4];
 	sf::Sprite gInterface;

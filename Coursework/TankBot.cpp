@@ -21,7 +21,7 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 
-TankBot::TankBot(sf::Texture &texture) : Tank(texture)
+TankBot::TankBot(sf::Texture& texture) : Tank(texture)
 {
 	tankBody.setPosition(1420, 500);
 	tankGun.setPosition(1420, 500);
@@ -29,7 +29,7 @@ TankBot::TankBot(sf::Texture &texture) : Tank(texture)
 }
 
 
-void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f firstBulletPos, bool playerLife, bool enemyHit, si sfxVolumeState)
+void TankBot::update(float& deltaTime, sf::Vector2f playerPos, sf::Vector2f firstBulletPos, bool playerLife, bool enemyHit, si sfxVolumeState)
 {
 	this->deltaTime = deltaTime;
 	sf::Vector2f tankPos = tankBody.getPosition();
@@ -117,7 +117,7 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 		}
 	}
 
-	float angle = atan2(tankPos.y - playerPos.y, tankPos.x - playerPos.x) * 180 / 3.14 + 270;
+	float angle = atan2(tankPos.y - playerPos.y, tankPos.x - playerPos.x) * 180 / PI + 270;
 
 	if (abs(tankBodyAngle - angle) < 30 || abs(tankBodyAngle - angle) > 330) {
 		tankGun.setRotation(angle);
@@ -137,7 +137,7 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 		decision = 1 + rand() % 4;
 		time = 0;
 		if (rand() % 2) {
-			if (rand() % 3) {
+			if (rand() % 2) {
 				decision = SHOT;
 				decisionTime = (1000 + static_cast <float> (rand() % 20000)) / 10;
 			}
@@ -213,7 +213,7 @@ void TankBot::update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f first
 
 	// move
 	movementSpeed = 0.3 + 0.1 * stats.msLevel;
-	tankBodyAngle = tankBodyAngle * 3.14 / 180;
+	tankBodyAngle = tankBodyAngle * PI / 180;
 
 	if (switcher.rotateLeft) {
 		tankBody.rotate(-rotationSpeed * deltaTime);

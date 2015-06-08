@@ -19,7 +19,7 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 #include "Bullet.h"
 
 
-Bullet::Bullet(sf::Texture &texture, sf::Vector2f gunPos, float angle, float level)
+Bullet::Bullet(sf::Texture& texture, sf::Vector2f gunPos, float angle, float level)
 {
 	bullet.setTexture(texture);
 	bulletTexture.setSmooth(true);
@@ -31,7 +31,7 @@ Bullet::Bullet(sf::Texture &texture, sf::Vector2f gunPos, float angle, float lev
 	muzzleFlash.setOrigin(100, 100);
 	muzzleFlash.setScale(0.5, 0.5);
 
-	angle = angle * 3.14 / 180;
+	angle = angle * PI / 180;
 	bullet.setPosition(gunPos.x + 120 * sin(angle), gunPos.y - 120 * cos(angle));
 
 	dx = (0.5 + level / 5) * sin(angle);
@@ -46,7 +46,7 @@ Bullet::~Bullet()
 {
 }
 
-void Bullet::update(float deltaTime, sf::Vector2f tankEnemyPos)
+void Bullet::update(float& deltaTime, sf::Vector2f tankEnemyPos)
 {
 	sf::Vector2f bulletPos = bullet.getPosition();
 
@@ -67,7 +67,7 @@ sf::Vector2f Bullet::getPosition()
 	return bullet.getPosition();
 }
 
-void Bullet::draw(sf::RenderWindow &window)
+void Bullet::draw(sf::RenderWindow& window)
 {
 	window.draw(bullet);
 	if (delayTime > 0) {

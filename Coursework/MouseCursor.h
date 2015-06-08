@@ -23,14 +23,15 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 class MouseCursor
 {
 public:
-	MouseCursor(sf::Texture &texture);
+	MouseCursor(sf::Texture& texture);
 	~MouseCursor();
-	void update();
-	void draw(sf::RenderWindow &window);
+	void update(float& deltaTime, sf::Vector2f& mousePos);
+	void draw(sf::RenderWindow& window);
 private:
-	sf::Sprite targetCursor;
 	sf::Sprite pickerCursor;
 	sf::Mouse mouse;
-	bool changeCursor = false;
+
+	bool showCursor = false;
+	float hideDelayTime = 0;
 };
 

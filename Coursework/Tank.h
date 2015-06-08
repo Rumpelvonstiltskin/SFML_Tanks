@@ -26,13 +26,13 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 class Tank
 {
 public:
-	Tank(sf::Texture &texture);
+	Tank(sf::Texture& texture);
 	~Tank();
 	sf::Vector2f getTankPosition();
 	sf::Vector2f getFirstBulletPosition();
 
-	virtual void update(float deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVolumeState);
-	void draw(sf::RenderWindow &window);
+	virtual void update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVolumeState);
+	void draw(sf::RenderWindow& window);
 	float getGunRotation();
 public:
 	struct stats {

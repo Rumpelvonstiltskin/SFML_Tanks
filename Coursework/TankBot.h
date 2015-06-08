@@ -24,9 +24,9 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 class TankBot : public Tank
 {
 public:
-	TankBot(sf::Texture &texture);
+	TankBot(sf::Texture& texture);
 	~TankBot();
-	void update(float deltaTime, sf::Vector2f playerPos, sf::Vector2f firstBulletPos, bool playerLife, bool enemyHit, si sfxVolumeState);
+	void update(float& deltaTime, sf::Vector2f playerPos, sf::Vector2f firstBulletPos, bool playerLife, bool enemyHit, si sfxVolumeState);
 	struct switchers {
 		bool moveForward = false;
 		bool moveBackward = false;

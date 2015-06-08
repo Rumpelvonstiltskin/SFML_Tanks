@@ -32,8 +32,8 @@ public:
 	Menu();
 	~Menu();
 
-	void update(float deltaTime, si gameState);
-	void draw(sf::RenderWindow &window);
+	void update(float& deltaTime, si gameState);
+	void draw(sf::RenderWindow& window);
 	si GetPressedItem();
 private:
 	sf::Font about;

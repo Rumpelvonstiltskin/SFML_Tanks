@@ -19,7 +19,7 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 #include "Tank.h"
 
 
-Tank::Tank(sf::Texture &texture)
+Tank::Tank(sf::Texture& texture)
 {
 	si r, g, b;
 
@@ -53,7 +53,7 @@ Tank::Tank(sf::Texture &texture)
 }
 
 
-void Tank::draw(sf::RenderWindow &window)
+void Tank::draw(sf::RenderWindow& window)
 {
 	hitDelayTime -= deltaTime;
 	if (hitDelayTime > 0) {
@@ -73,7 +73,7 @@ void Tank::draw(sf::RenderWindow &window)
 }
 
 
-void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVolumeState)
+void Tank::update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVolumeState)
 {
 	this->enemyHit = enemyHit;
 	if (enemyHit) {
@@ -87,8 +87,8 @@ void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVol
 	this->enemyHit = false;
 
 	this->deltaTime = deltaTime;
-	sf::Vector2f tankPos = tankBody.getPosition();
 	sf::Vector2i mousePos = mouse.getPosition();
+	sf::Vector2f tankPos = tankBody.getPosition();
 	float tankBodyAngle = tankBody.getRotation();
 
 	// shot
@@ -144,7 +144,7 @@ void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVol
 	float dx = mouse.getPosition().x - gunPos.x;
 	float dy = mouse.getPosition().y - gunPos.y;
 
-	float angle = atan2(dy, dx) * 180 / 3.14 + 90;
+	float angle = atan2(dy, dx) * 180 / PI + 90;
 
 	if (dy < 0 && dx < 0) {		// have no idea why
 		angle += 360;
@@ -204,7 +204,7 @@ void Tank::update(float deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVol
 
 	// move
 	movementSpeed = 0.3 + 0.1 * stats.msLevel;
-	tankBodyAngle = tankBodyAngle * 3.14 / 180;
+	tankBodyAngle = tankBodyAngle * PI / 180;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		tankBody.rotate(-rotationSpeed * deltaTime);

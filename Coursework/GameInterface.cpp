@@ -64,7 +64,7 @@ GameInterface::GameInterface(sf::Texture &texture)
 }
 
 
-void GameInterface::update(struct Tank::stats stats, float deltaTime)
+void GameInterface::update(struct Tank::stats stats, float& deltaTime)
 {
 	time += deltaTime;
 
@@ -121,7 +121,7 @@ void GameInterface::update(struct Tank::stats stats, float deltaTime)
 }
 
 
-void GameInterface::draw(sf::RenderWindow &window)
+void GameInterface::draw(sf::RenderWindow& window)
 {
 	window.draw(gInterface);
 	window.draw(timeText);

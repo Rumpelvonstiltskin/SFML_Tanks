@@ -84,7 +84,7 @@ Menu::~Menu()
 }
 
 
-void Menu::update(float deltaTime, si gameState)
+void Menu::update(float& deltaTime, si gameState)
 {
 	delayTime += deltaTime;
 	this->gameState = gameState;
@@ -206,7 +206,7 @@ void Menu::update(float deltaTime, si gameState)
 }
 
 
-void Menu::draw(sf::RenderWindow &window)
+void Menu::draw(sf::RenderWindow& window)
 {
 	window.clear(sf::Color(221, 201, 93));
 	if (gameState == 4)

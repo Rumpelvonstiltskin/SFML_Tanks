@@ -17,6 +17,7 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "Game.h"
+#include "gamedef.h"
 
 
 void Game::run()
@@ -34,7 +35,8 @@ void Game::run()
 	}
 }
 
-Game::Game() : window(sf::VideoMode(1920, 1080), "SFML Tanks", sf::Style::Fullscreen)
+
+Game::Game() : window(sf::VideoMode(width, height), "SFML Tanks", sf::Style::Fullscreen)
 {
 	window.setMouseCursorVisible(false);
 	window.setFramerateLimit(144);
@@ -54,9 +56,7 @@ Game::Game() : window(sf::VideoMode(1920, 1080), "SFML Tanks", sf::Style::Fullsc
 	musicTheme.setVolume(menu->musicVolumeState * 10);
 	musicTheme.setLoop(true);
 
-	int newH = (1920 * 1080) / 1920;
-	int displace = (newH - 1080) / (-2);
-	sf::View view(sf::FloatRect(0, displace, 1920, newH));
+	sf::View view(sf::FloatRect(0, 0, 1920, 1080));
 	window.setView(view);
 }
 
@@ -103,12 +103,14 @@ void Game::processEvents()
 
 void Game::update(float deltaTime)
 {
+	sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+
 	if (gameState == GAME) {
 		gameInterface->update(player->stats, deltaTime);
 		map->update(deltaTime);
 		player->update(deltaTime, bot->getTankPosition(), bot->enemyHit, menu->sfxVolumeState);
 		bot->update(deltaTime, player->getTankPosition(), player->getFirstBulletPosition(), player->life, player->enemyHit, menu->sfxVolumeState);
-		dynamicCursor->update();
+		dynamicCursor->update(deltaTime, mousePos);
 	}
 
 	if (gameState != GAME && gameState !=EXIT)

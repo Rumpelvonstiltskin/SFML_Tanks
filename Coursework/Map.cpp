@@ -32,7 +32,7 @@ Map::Map(sf::Texture &texture)
 }
 
 
-void Map::draw(sf::RenderWindow &window)
+void Map::draw(sf::RenderWindow& window)
 {
 	window.draw(map);
 
@@ -41,7 +41,7 @@ void Map::draw(sf::RenderWindow &window)
 }
 
 
-void Map::update(float deltaTime)
+void Map::update(float& deltaTime)
 {
 	for (int i = 0; i <= 2; ++i)
 		lines[i].move(0, 0.5 * deltaTime);
