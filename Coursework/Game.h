@@ -43,7 +43,6 @@ public:
 private:
 	sf::RenderWindow window;
 	sf::Texture gameTexture;
-	//sf::Music gameTheme;
 
 	Menu* menu;
 	Map* map;
