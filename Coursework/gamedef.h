@@ -30,8 +30,11 @@ enum gameStates {
 #define BATTLE_ZONE (mousePos.y < 840) && (pow(mousePos.x - 960, 2) / 3450306 + pow(mousePos.y + 120, 2) / 67600 >= 1)
 #define UPGRADE_AREA tankPos.x > 70 && tankPos.x < 100 && tankPos.y > 525 && tankPos.y < 555
 
-#define GUN_LENGTH 120
+#define SECOND 1000
 #define MOUSE_HIDE_DELAY_TIME 500
+#define UPGRADE_DELAY_TIME 300
+
+#define GUN_LENGTH 120
 #define DAMAGE 20
 #define LEFT_SHORE_X 762.5
 #define RIGHT_SHORE_X 1177

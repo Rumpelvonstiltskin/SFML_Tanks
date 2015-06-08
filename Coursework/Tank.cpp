@@ -158,7 +158,7 @@ void Tank::update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVo
 	secondCounterOne += deltaTime;
 	secondCounterTwo += deltaTime;
 
-	if (secondCounterOne >= 1000) {
+	if (secondCounterOne >= SECOND) {
 		stats.gold++;
 		secondCounterOne = 0;
 	}
@@ -171,7 +171,7 @@ void Tank::update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVo
 	}
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && stats.upgradeAvailability == true) {
-		if (secondCounterTwo > 300) {
+		if (secondCounterTwo > UPGRADE_DELAY_TIME) {
 			sUpgrade.play();
 
 			if (mousePos.y > 1035 && mousePos.y < 1075 && stats.gold >= 100) {
