@@ -75,7 +75,12 @@ void Tank::draw(sf::RenderWindow& window)
 
 void Tank::update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVolumeState, sf::Vector2f mousePos)
 {
+	sf::Vector2f tankPos = tankBody.getPosition();
+	float tankBodyAngle = tankBody.getRotation();
+
+	this->deltaTime = deltaTime;
 	this->enemyHit = enemyHit;
+
 	if (enemyHit) {
 		if (stats.armor) {
 			stats.armor -= DAMAGE;
@@ -84,12 +89,8 @@ void Tank::update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVo
 			stats.healingPoints -= DAMAGE;
 		}
 	}
-	this->enemyHit = false;
 
-	this->deltaTime = deltaTime;
-	//sf::Vector2i mousePos = mouse.getPosition();
-	sf::Vector2f tankPos = tankBody.getPosition();
-	float tankBodyAngle = tankBody.getRotation();
+	this->enemyHit = false;
 
 	// shot
 	bulletDelayTime += deltaTime;

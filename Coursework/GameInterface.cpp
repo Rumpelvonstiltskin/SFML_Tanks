@@ -68,7 +68,7 @@ void GameInterface::update(struct Tank::stats stats, float& deltaTime)
 {
 	time += deltaTime;
 
-	if (time >= 1000) {
+	if (time >= SECOND) {
 		time = 0;
 		seconds++;
 		if (seconds == 60) {
