@@ -32,6 +32,6 @@ private:
 	sf::Mouse mouse;
 
 	bool showCursor = false;
-	float hideDelayTime = 0;
+	float hideDelayTime;
 };
 

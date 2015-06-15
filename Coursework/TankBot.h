@@ -39,8 +39,8 @@ private:
 		FORWARD_MOVEMENT = 1, BACKWARD_MOVEMENT, ROTATION_LEFT, ROTATION_RIGHT, SHOT
 	};
 	
-	float time = 0;
-	float decisionTime = 0;
+	float time;
+	float decisionTime;
 	si decision;
 	si upgrade;
 private:

@@ -19,7 +19,16 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 #include "Tank.h"
 
 
-Tank::Tank(sf::Texture& texture)
+Tank::Tank(sf::Texture& texture) : 
+	drawPriority(1), 
+	rotationSpeed(0.2), 
+	bulletDelayTime(0), 
+	shotSoundDelayTime(0),
+	hitDelayTime(100),
+	respawnTime(3000),
+	secondCounterOne(0),
+	secondCounterTwo(0),
+	rotate(false)
 {
 	si r, g, b;
 

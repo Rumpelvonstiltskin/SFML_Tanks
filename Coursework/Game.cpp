@@ -36,7 +36,7 @@ void Game::run()
 }
 
 
-Game::Game() : window(sf::VideoMode(width, height), "SFML Tanks", sf::Style::Fullscreen)
+Game::Game() : window(sf::VideoMode(width, height), "SFML Tanks", sf::Style::Fullscreen), gameState(MENU)
 {
 	window.setMouseCursorVisible(false);
 	window.setFramerateLimit(144);

@@ -19,7 +19,7 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 #include "GameInterface.h"
 #include "Tank.h"
 
-GameInterface::GameInterface(sf::Texture &texture)
+GameInterface::GameInterface(sf::Texture &texture) : seconds(0), minutes(0), time(0)
 {
 	gInterface.setTexture(texture);
 	gInterface.setTextureRect(sf::IntRect(0, 0, 1920, 1080));

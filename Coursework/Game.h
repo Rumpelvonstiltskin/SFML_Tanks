@@ -54,7 +54,7 @@ private:
 	sf::Sound musicTheme;
 	sf::Mouse mouse;
 
-	si gameState = MENU;
+	si gameState;
 private:
 	void update(float deltaTime);
 	void render();

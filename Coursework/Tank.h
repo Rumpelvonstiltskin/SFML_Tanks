@@ -47,7 +47,7 @@ public:
 	} stats;
 
 	bool life = true;
-	si drawPriority = 1;
+	si drawPriority;
 	bool enemyHit;
 protected:
 	std::list<Bullet*> bullets;
@@ -63,19 +63,19 @@ protected:
 	sf::SoundBuffer upgradeBuf;
 	sf::Sound sUpgrade;
 
-	float rotationSpeed = 0.2;
-	float movementSpeed = 0.1;
+	float rotationSpeed;
+	float movementSpeed;
 
-	float bulletDelayTime = 0;
-	float shotSoundDelayTime = 0;
+	float bulletDelayTime;
+	float shotSoundDelayTime;
 	float deltaTime;
-	float hitDelayTime = 100;
-	float respawnTime = 3000;
+	float hitDelayTime;
+	float respawnTime;
 
-	float secondCounterOne = 0;
-	float secondCounterTwo = 0;
+	float secondCounterOne;
+	float secondCounterTwo;
 
-	bool rotate = false;
+	bool rotate;
 protected:
 	void explode(sf::Vector2f hitPos);
 	virtual void kill();

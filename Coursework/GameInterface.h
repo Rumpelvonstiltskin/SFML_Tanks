@@ -36,8 +36,8 @@ private:
 	sf::Font font;
 	sf::Text timeText, playerHealth, playerArmor, playerGold, playerMSLevel, playerASLevel, playerBSLevel;
 
-	si seconds = 0;
-	si minutes = 0;
-	float time = 0;
+	si seconds;
+	si minutes;
+	float time;
 };
 

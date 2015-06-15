@@ -21,10 +21,11 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 
-TankBot::TankBot(sf::Texture& texture) : Tank(texture)
+TankBot::TankBot(sf::Texture& texture) : Tank(texture), time(0), decisionTime(0)
 {
 	tankBody.setPosition(1420, 500);
 	tankGun.setPosition(1420, 500);
+
 	drawPriority = 0;
 }
 

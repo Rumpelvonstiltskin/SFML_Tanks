@@ -19,7 +19,7 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 #include "Bullet.h"
 
 
-Bullet::Bullet(sf::Texture& texture, sf::Vector2f gunPos, float gunAngle, float level)
+Bullet::Bullet(sf::Texture& texture, sf::Vector2f gunPos, float gunAngle, float level) : delayTime(25), dx(35), dy(35)
 {
 	bullet.setTexture(texture);
 	bulletTexture.setSmooth(true);

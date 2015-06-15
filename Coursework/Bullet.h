@@ -39,9 +39,9 @@ private:
 	sf::Sprite bullet;
 	sf::Vector2f gunPos;
 
-	float delayTime = 25;
-	float dx = 35;
-	float dy = 35;
-	float gunAngle = 0;
+	float delayTime;
+	float dx;
+	float dy;
+	float gunAngle;
 };
 

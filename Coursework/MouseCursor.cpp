@@ -19,7 +19,7 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 #include "MouseCursor.h"
 
 
-MouseCursor::MouseCursor(sf::Texture& texture)
+MouseCursor::MouseCursor(sf::Texture& texture) : hideDelayTime(0)
 {
 	pickerCursor.setTexture(texture);
 	pickerCursor.setTextureRect(sf::IntRect(340, 1925, 50, 50));

@@ -43,8 +43,8 @@ private:
 	sf::RectangleShape bar[10][2];
 	sf::SoundBuffer menuThemeBuffer;
 
-	si selectedItemIndexMenu = 0;
-	si selectedItemIndexOptions = 4;
+	si selectedItemIndexMenu;
+	si selectedItemIndexOptions;
 	si gameState = MENU;	// MENU
 
 	float delayTime = 0;
