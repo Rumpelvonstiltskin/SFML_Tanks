@@ -19,6 +19,7 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <list>
 #include "Bullet.h"
 #include "gamedef.h"
 
@@ -49,8 +50,8 @@ public:
 	si drawPriority = 1;
 	bool enemyHit;
 protected:
-	std::vector<Bullet*> bullets;
-	std::vector<Bullet*>::iterator it;
+	std::list<Bullet*> bullets;
+	std::list<Bullet*>::iterator it;
 
 	sf::Sprite tankBody;
 	sf::Sprite tankGun;

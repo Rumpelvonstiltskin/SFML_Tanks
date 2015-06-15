@@ -35,7 +35,7 @@ enum gameStates {
 #define UPGRADE_DELAY_TIME 300
 
 #define GUN_LENGTH 120
-#define DAMAGE 20
+#define TANK_DAMAGE 20
 #define LEFT_SHORE_X 762.5
 #define RIGHT_SHORE_X 1177
 #define LEFT_BORDER_X 75

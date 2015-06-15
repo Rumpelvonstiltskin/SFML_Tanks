@@ -83,10 +83,10 @@ void Tank::update(float& deltaTime, sf::Vector2f botPos, bool enemyHit, si sfxVo
 
 	if (enemyHit) {
 		if (stats.armor) {
-			stats.armor -= DAMAGE;
+			stats.armor -= TANK_DAMAGE;
 		}
 		else {
-			stats.healingPoints -= DAMAGE;
+			stats.healingPoints -= TANK_DAMAGE;
 		}
 	}
 

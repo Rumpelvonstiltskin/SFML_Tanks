@@ -20,7 +20,6 @@ along with Tanks Source Code.  If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <string>
 #include "gamedef.h"
-#include <iostream>
 
 
 si width = 1920;
@@ -34,8 +33,8 @@ int main()
 	std::ofstream *fout = new std::ofstream;
 	std::ifstream *fin = new std::ifstream;
 
-	char lineOne[15];
-	char lineTwo[15];
+	std::string lineOne;
+	std::string lineTwo;
 
 	std::string widthStr;
 	std::string heightStr;

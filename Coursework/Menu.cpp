@@ -91,7 +91,7 @@ void Menu::update(float& deltaTime, si gameState)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (delayTime > 200) {
-			if (gameState == 4) {
+			if (gameState == MENU) {
 				if (selectedItemIndexMenu >= 1) {
 					item[selectedItemIndexMenu].setColor(sf::Color::White);
 					selectedItemIndexMenu--;
@@ -104,7 +104,7 @@ void Menu::update(float& deltaTime, si gameState)
 				}
 			}
 
-			if (gameState == 1) {
+			if (gameState == OPTIONS) {
 				if (selectedItemIndexOptions == 5) {
 					item[selectedItemIndexOptions].setColor(sf::Color::White);
 					selectedItemIndexOptions = 4;
@@ -163,7 +163,7 @@ void Menu::update(float& deltaTime, si gameState)
 	for (int i = 0; i <= sfxVolumeState; i++)
 		bar[i][1].setFillColor(sf::Color(i * 28, 255 - i * 28, 0));
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && gameState == OPTIONS) {
 		if (delayTime > 50) {
 			if (selectedItemIndexOptions == 4) {
 				musicVolumeState--;
@@ -177,7 +177,7 @@ void Menu::update(float& deltaTime, si gameState)
 		}
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && gameState == OPTIONS) {
 		if (delayTime > 50) {
 			if (selectedItemIndexOptions == 4) {
 				musicVolumeState++;
