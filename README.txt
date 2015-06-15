@@ -27,3 +27,5 @@ LICENSE
 This project distributed under GNU GPLv3
 
 See COPYING.txt for the GNU GENERAL PUBLIC LICENSE
+
+level_theme.ogg and menu_theme.ogg Copyrighted by Waterflame
